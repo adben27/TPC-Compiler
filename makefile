@@ -5,32 +5,30 @@
 # $< : the first current prerequisite
 
 CC=gcc
-CFLAGS=-Wall
-LDFLAGS=-Wall -lfl -ly
-SRC = ./src/
-BIN = ./bin/
-OBJ = ./obj/
+CFLAGS= -Wall -g -Iobj -Isrc
+LDFLAGS= -lfl
 EXEC=tpc-2023-2024
 
-all: $(BIN)tpcas clean
+bin/tpcas : obj/lex.yy.o obj/$(EXEC).tab.o obj/tree.o | bin
+	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS)
 
-$(BIN)tpcas : $(OBJ)lex.yy.o $(OBJ)$(EXEC).tab.o $(OBJ)tree.o
-	$(CC) -o $@ $^ $(LDFLAGS)
-
-$(OBJ)lex.yy.c: $(SRC)$(EXEC).lex
-	  flex $<
-
-$(OBJ)lex.yy.o: $(OBJ)lex.yy.c $(OBJ)$(EXEC).tab.c
+obj/tree.o : src/tree.c src/tree.h | obj
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-$(OBJ)$(EXEC).tab.c : $(SRC)$(EXEC).y 
-	bison -d $<
-
-$(OBJ)$(EXEC).tab.o : $(OBJ)$(EXEC).tab.c $(OBJ)$(EXEC).tab.h
-	$(CC) -o $@ -c $< $(CFLAGS) 
-
-$(OBJ)tree.o : $(SRC)tree.c $(SRC)tree.h
+obj/$(EXEC).tab.o : obj/$(EXEC).tab.c | obj
 	$(CC) -o $@ -c $< $(CFLAGS)
+
+obj/lex.yy.o : obj/lex.yy.c obj/$(EXEC).tab.c | obj 
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+obj/lex.yy.c: src/$(EXEC).lex | obj
+	  flex -o $@ $<
+
+obj/$(EXEC).tab.c : src/$(EXEC).y obj/tree.o | obj
+	bison --output=$@ --defines=obj/$(EXEC).tab.h $<
+
+bin obj:
+	mkdir $@
 
 clean:
-	rm -f $(BIN)tpcas
+	rm -rf bin obj

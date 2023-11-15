@@ -1,33 +1,61 @@
 %{
 /* Analyseur syntaxique TPC*/
 #include "tree.h"
-#include "tpcas.tab.h"
+#include "tpc-2023-2024.tab.h"
 int lineno = 1;
 %}
 
-letter [A-Za-z_]
-digit [0-9]
-escape [\n\t ]
+%option noinput
+%option nounput
 
-%x COM
+letter [A-Za-z_]
+escape [\t ]
+
+%x COM COMS
 
 %%
+"," return ',';
+
+"(" return '(';
+")" return ')';
+"{" return '{';
+"}" return '}';
+
+"=" return '=';
+"!" return '!';
+
+"//" BEGIN COM;
+<COM>. ;
+<COM>\n BEGIN INITIAL;
+"/*" BEGIN COMS;
+<COMS>"*/" BEGIN INITIAL;
+<COMS>. ;
+
 return return RETURN;
 if return IF;
 else return ELSE;
 while return WHILE;
 
 void return VOID;
-int|char  return TYPE;
+int|char return TYPE;
 
-{letter}+/{escape}*"(" printf("%s ", yytext);
-"//"{escape}*{letter}+/{escape}* ;
-"/*" BEGIN COM;
-<COM>"*/" BEGIN INITIAL;
-<COM>. ;
 [+-] return ADDSUB;
 [*/%] return ADDSUB;
+
+[<>] return ORDER;
+[<>]= return ORDER;
+
+==|!= return EQ;
+"||" return OR;
+"&&" return AND;
+
+[0-9]+ return NUM;
+
 {letter}+ return IDENT;
+
 \n lineno++;
-.;
+
+{escape}+ ;
+";" return ';';
+. return CHARACTER;
 %%

@@ -1,6 +1,10 @@
 %{
 /* Bison de départ projet TPC */
+#include "tree.h"
+#include <stdio.h>
 extern int lineno;
+int yylex();
+int yyerror(char*);
 %}
 
 %token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  
@@ -90,3 +94,12 @@ ListExp:
     |  Exp
     ;
 %%
+
+int yyerror(char *msg) {
+	fprintf(stderr, "%s at line %d\n", msg, lineno);
+	return 0;
+}
+
+int main(){
+	return yyparse();
+}

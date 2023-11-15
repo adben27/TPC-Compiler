@@ -71,443 +71,82 @@
 !_TAG_ROLE_DESCRIPTION!C++!macro	undef	/undefined/
 !_TAG_ROLE_DESCRIPTION!Make!makefile	included	/included/
 !_TAG_ROLE_DESCRIPTION!Make!makefile	optional	/optionally included/
-$(BIN)tpcas	makefile	/^$(BIN)tpcas : $(OBJ)lex.yy.o $(OBJ)$(EXEC).tab.o $(OBJ)tree.o$/;"	t
-$(OBJ)$(EXEC).tab.c	makefile	/^$(OBJ)$(EXEC).tab.c : $(SRC)$(EXEC).y $/;"	t
-$(OBJ)$(EXEC).tab.o	makefile	/^$(OBJ)$(EXEC).tab.o : $(OBJ)$(EXEC).tab.c $(OBJ)$(EXEC).tab.h$/;"	t
-$(OBJ)lex.yy.c	makefile	/^$(OBJ)lex.yy.c: $(SRC)$(EXEC).lex$/;"	t
-$(OBJ)lex.yy.o	makefile	/^$(OBJ)lex.yy.o: $(OBJ)lex.yy.c $(OBJ)$(EXEC).tab.c$/;"	t
-$(OBJ)tree.o	makefile	/^$(OBJ)tree.o : $(SRC)tree.c $(SRC)tree.h$/;"	t
 ADDSUB	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-ADDSUB	tpc-2023-2024.tab.h	/^    ADDSUB = 269,                  \/* ADDSUB  *\/$/;"	e	enum:yytokentype
 AND	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-AND	tpc-2023-2024.tab.h	/^    AND = 266,                     \/* AND  *\/$/;"	e	enum:yytokentype
 Arguments	src/tpc-2023-2024.y	/^Arguments:$/;"	l
-BEGIN	lex.yy.c	/^#define BEGIN /;"	d	file:
-BIN	makefile	/^BIN = .\/bin\/$/;"	m
 CC	makefile	/^CC=gcc$/;"	m
-CFLAGS	makefile	/^CFLAGS=-Wall$/;"	m
+CFLAGS	makefile	/^CFLAGS= -Wall -g -Iobj -Isrc$/;"	m
 CHARACTER	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-CHARACTER	tpc-2023-2024.tab.h	/^    CHARACTER = 272                \/* CHARACTER  *\/$/;"	e	enum:yytokentype
-COM	lex.yy.c	/^#define COM /;"	d	file:
-COM	lex.yy.c	/^BEGIN COM;$/;"	v	typeref:typename:YY_RULE_SETUP BEGIN
-COM	src/tpc-2023-2024.lex	/^%x COM$/;"	c
+COM	src/tpc-2023-2024.lex	/^%x COM COMS$/;"	c
+COMS	src/tpc-2023-2024.lex	/^%x COM COMS$/;"	c
+Compilation	README.md	/^## Compilation$/;"	s	chapter:proj_anasynt
 Corps	src/tpc-2023-2024.y	/^Corps: '{' DeclVars SuiteInstr '}'$/;"	l
 DIVSTAR	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-DIVSTAR	tpc-2023-2024.tab.h	/^    DIVSTAR = 270,                 \/* DIVSTAR  *\/$/;"	e	enum:yytokentype
 DeclFonct	src/tpc-2023-2024.y	/^DeclFonct:$/;"	l
 DeclFoncts	src/tpc-2023-2024.y	/^DeclFoncts:$/;"	l
 DeclVars	src/tpc-2023-2024.y	/^DeclVars:$/;"	l
 Declarateurs	src/tpc-2023-2024.y	/^Declarateurs:$/;"	l
-ECHO	lex.yy.c	/^#define ECHO /;"	d	file:
-ECHO	lex.yy.c	/^ECHO;$/;"	v	typeref:typename:YY_RULE_SETUP
+E	src/tree.h	/^  E,$/;"	e	enum:__anon7c1c46a20103
 ELSE	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-ELSE	tpc-2023-2024.tab.h	/^    ELSE = 262,                    \/* ELSE  *\/$/;"	e	enum:yytokentype
-EOB_ACT_CONTINUE_SCAN	lex.yy.c	/^#define EOB_ACT_CONTINUE_SCAN /;"	d	file:
-EOB_ACT_END_OF_FILE	lex.yy.c	/^#define EOB_ACT_END_OF_FILE /;"	d	file:
-EOB_ACT_LAST_MATCH	lex.yy.c	/^#define EOB_ACT_LAST_MATCH /;"	d	file:
 EQ	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-EQ	tpc-2023-2024.tab.h	/^    EQ = 267,                      \/* EQ  *\/$/;"	e	enum:yytokentype
 EXEC	makefile	/^EXEC=tpc-2023-2024$/;"	m
-EXIT_SUCCESS	tpc-2023-2024.tab.c	/^#      define EXIT_SUCCESS /;"	d	file:
-EXIT_SUCCESS	tpc-2023-2024.tab.c	/^#    define EXIT_SUCCESS /;"	d	file:
 EnTeteFonct	src/tpc-2023-2024.y	/^EnTeteFonct:$/;"	l
 Exp	src/tpc-2023-2024.y	/^Exp :  Exp OR TB$/;"	l
 FB	src/tpc-2023-2024.y	/^FB  :  FB EQ M$/;"	l
-FLEXINT_H	lex.yy.c	/^#define FLEXINT_H$/;"	d	file:
-FLEX_BETA	lex.yy.c	/^#define FLEX_BETA$/;"	d	file:
-FLEX_SCANNER	lex.yy.c	/^#define FLEX_SCANNER$/;"	d	file:
+FIRSTCHILD	src/tree.h	/^#define FIRSTCHILD(/;"	d
 IDENT	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-IDENT	tpc-2023-2024.tab.h	/^    IDENT = 260,                   \/* IDENT  *\/$/;"	e	enum:yytokentype
 IF	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-IF	tpc-2023-2024.tab.h	/^    IF = 261,                      \/* IF  *\/$/;"	e	enum:yytokentype
-INITIAL	lex.yy.c	/^#define INITIAL /;"	d	file:
-INITIAL	lex.yy.c	/^BEGIN INITIAL;$/;"	v	typeref:typename:YY_RULE_SETUP BEGIN
-INT16_MAX	lex.yy.c	/^#define INT16_MAX /;"	d	file:
-INT16_MIN	lex.yy.c	/^#define INT16_MIN /;"	d	file:
-INT32_MAX	lex.yy.c	/^#define INT32_MAX /;"	d	file:
-INT32_MIN	lex.yy.c	/^#define INT32_MIN /;"	d	file:
-INT8_MAX	lex.yy.c	/^#define INT8_MAX /;"	d	file:
-INT8_MIN	lex.yy.c	/^#define INT8_MIN /;"	d	file:
+Implémentation des tableaux	README.md	/^## Implémentation des tableaux$/;"	s	chapter:proj_anasynt
 Instr	src/tpc-2023-2024.y	/^Instr:$/;"	l
-LDFLAGS	makefile	/^LDFLAGS=-Wall -lfl -ly$/;"	m
+LDFLAGS	makefile	/^LDFLAGS= -lfl$/;"	m
 LValue	src/tpc-2023-2024.y	/^LValue:$/;"	l
 ListExp	src/tpc-2023-2024.y	/^ListExp:$/;"	l
 ListTypVar	src/tpc-2023-2024.y	/^ListTypVar:$/;"	l
 NUM	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-NUM	tpc-2023-2024.tab.h	/^    NUM = 271,                     \/* NUM  *\/$/;"	e	enum:yytokentype
-OBJ	makefile	/^OBJ = .\/obj\/$/;"	m
+Node	src/tree.h	/^typedef struct Node {$/;"	s
+Node	src/tree.h	/^} Node;$/;"	t	typeref:struct:Node
 OR	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-OR	tpc-2023-2024.tab.h	/^    OR = 265,                      \/* OR  *\/$/;"	e	enum:yytokentype
 ORDER	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-ORDER	tpc-2023-2024.tab.h	/^    ORDER = 268,                   \/* ORDER  *\/$/;"	e	enum:yytokentype
 Parametres	src/tpc-2023-2024.y	/^Parametres:$/;"	l
 Prog	src/tpc-2023-2024.y	/^Prog:  DeclVars DeclFoncts$/;"	l
-REJECT	lex.yy.c	/^#define REJECT /;"	d	file:
 RETURN	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-RETURN	tpc-2023-2024.tab.h	/^    RETURN = 264,                  \/* RETURN  *\/$/;"	e	enum:yytokentype
-SIZE_MAX	lex.yy.c	/^#define SIZE_MAX /;"	d	file:
-SRC	makefile	/^SRC = .\/src\/$/;"	m
+SECONDCHILD	src/tree.h	/^#define SECONDCHILD(/;"	d
+StringFromLabel	src/tree.c	/^static const char *StringFromLabel[] = {$/;"	v	typeref:typename:const char * []	file:
+Structure de l'arbre abstrait	README.md	/^## Structure de l'arbre abstrait $/;"	s	chapter:proj_anasynt
 SuiteInstr	src/tpc-2023-2024.y	/^SuiteInstr:$/;"	l
+T	src/tree.h	/^  T,$/;"	e	enum:__anon7c1c46a20103
 TB	src/tpc-2023-2024.y	/^TB  :  TB AND FB$/;"	l
+THIRDCHILD	src/tree.h	/^#define THIRDCHILD(/;"	d
 TYPE	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-TYPE	tpc-2023-2024.tab.h	/^    TYPE = 258,                    \/* TYPE  *\/$/;"	e	enum:yytokentype
-UINT16_MAX	lex.yy.c	/^#define UINT16_MAX /;"	d	file:
-UINT32_MAX	lex.yy.c	/^#define UINT32_MAX /;"	d	file:
-UINT8_MAX	lex.yy.c	/^#define UINT8_MAX /;"	d	file:
-UINT_LEAST16_MAX	tpc-2023-2024.tab.c	/^# define UINT_LEAST16_MAX /;"	d	file:
-UINT_LEAST8_MAX	tpc-2023-2024.tab.c	/^# define UINT_LEAST8_MAX /;"	d	file:
 VOID	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-VOID	tpc-2023-2024.tab.h	/^    VOID = 259,                    \/* VOID  *\/$/;"	e	enum:yytokentype
 WHILE	src/tpc-2023-2024.y	/^%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  $/;"	t
-WHILE	tpc-2023-2024.tab.h	/^    WHILE = 263,                   \/* WHILE  *\/$/;"	e	enum:yytokentype
-YYABORT	tpc-2023-2024.tab.c	/^#define YYABORT /;"	d	file:
-YYACCEPT	tpc-2023-2024.tab.c	/^#define YYACCEPT /;"	d	file:
-YYBACKUP	tpc-2023-2024.tab.c	/^#define YYBACKUP(/;"	d	file:
-YYBISON	tpc-2023-2024.tab.c	/^#define YYBISON /;"	d	file:
-YYBISON_VERSION	tpc-2023-2024.tab.c	/^#define YYBISON_VERSION /;"	d	file:
-YYCOPY	tpc-2023-2024.tab.c	/^#   define YYCOPY(/;"	d	file:
-YYCOPY_NEEDED	tpc-2023-2024.tab.c	/^# define YYCOPY_NEEDED /;"	d	file:
-YYDEBUG	tpc-2023-2024.tab.h	/^# define YYDEBUG /;"	d
-YYDPRINTF	tpc-2023-2024.tab.c	/^# define YYDPRINTF(/;"	d	file:
-YYEMPTY	tpc-2023-2024.tab.h	/^    YYEMPTY = -2,$/;"	e	enum:yytokentype
-YYENOMEM	tpc-2023-2024.tab.c	/^enum { YYENOMEM = -2 };$/;"	e	enum:__anonfef372ab0103	file:
-YYEOF	tpc-2023-2024.tab.h	/^    YYEOF = 0,                     \/* "end of file"  *\/$/;"	e	enum:yytokentype
-YYERRCODE	tpc-2023-2024.tab.c	/^#define YYERRCODE /;"	d	file:
-YYERROR	tpc-2023-2024.tab.c	/^#define YYERROR /;"	d	file:
-YYFINAL	tpc-2023-2024.tab.c	/^#define YYFINAL /;"	d	file:
-YYFPRINTF	tpc-2023-2024.tab.c	/^#  define YYFPRINTF /;"	d	file:
-YYFREE	tpc-2023-2024.tab.c	/^#   define YYFREE /;"	d	file:
-YYINITDEPTH	tpc-2023-2024.tab.c	/^# define YYINITDEPTH /;"	d	file:
-YYLAST	tpc-2023-2024.tab.c	/^#define YYLAST /;"	d	file:
-YYMALLOC	tpc-2023-2024.tab.c	/^#   define YYMALLOC /;"	d	file:
-YYMAXDEPTH	tpc-2023-2024.tab.c	/^# define YYMAXDEPTH /;"	d	file:
-YYMAXUTOK	tpc-2023-2024.tab.c	/^#define YYMAXUTOK /;"	d	file:
-YYNNTS	tpc-2023-2024.tab.c	/^#define YYNNTS /;"	d	file:
-YYNOMEM	tpc-2023-2024.tab.c	/^#define YYNOMEM /;"	d	file:
-YYNRULES	tpc-2023-2024.tab.c	/^#define YYNRULES /;"	d	file:
-YYNSTATES	tpc-2023-2024.tab.c	/^#define YYNSTATES /;"	d	file:
-YYNTOKENS	tpc-2023-2024.tab.c	/^#define YYNTOKENS /;"	d	file:
-YYPACT_NINF	tpc-2023-2024.tab.c	/^#define YYPACT_NINF /;"	d	file:
-YYPOPSTACK	tpc-2023-2024.tab.c	/^#define YYPOPSTACK(/;"	d	file:
-YYPTRDIFF_MAXIMUM	tpc-2023-2024.tab.c	/^#  define YYPTRDIFF_MAXIMUM /;"	d	file:
-YYPTRDIFF_T	tpc-2023-2024.tab.c	/^#  define YYPTRDIFF_T /;"	d	file:
-YYPULL	tpc-2023-2024.tab.c	/^#define YYPULL /;"	d	file:
-YYPURE	tpc-2023-2024.tab.c	/^#define YYPURE /;"	d	file:
-YYPUSH	tpc-2023-2024.tab.c	/^#define YYPUSH /;"	d	file:
-YYRECOVERING	tpc-2023-2024.tab.c	/^#define YYRECOVERING(/;"	d	file:
-YYSIZEOF	tpc-2023-2024.tab.c	/^#define YYSIZEOF(/;"	d	file:
-YYSIZE_MAXIMUM	tpc-2023-2024.tab.c	/^#define YYSIZE_MAXIMUM /;"	d	file:
-YYSIZE_T	tpc-2023-2024.tab.c	/^#  define YYSIZE_T /;"	d	file:
-YYSKELETON_NAME	tpc-2023-2024.tab.c	/^#define YYSKELETON_NAME /;"	d	file:
-YYSTACK_ALLOC	tpc-2023-2024.tab.c	/^#    define YYSTACK_ALLOC /;"	d	file:
-YYSTACK_ALLOC	tpc-2023-2024.tab.c	/^#  define YYSTACK_ALLOC /;"	d	file:
-YYSTACK_ALLOC_MAXIMUM	tpc-2023-2024.tab.c	/^#   define YYSTACK_ALLOC_MAXIMUM /;"	d	file:
-YYSTACK_BYTES	tpc-2023-2024.tab.c	/^# define YYSTACK_BYTES(/;"	d	file:
-YYSTACK_FREE	tpc-2023-2024.tab.c	/^#  define YYSTACK_FREE /;"	d	file:
-YYSTACK_FREE	tpc-2023-2024.tab.c	/^#  define YYSTACK_FREE(/;"	d	file:
-YYSTACK_GAP_MAXIMUM	tpc-2023-2024.tab.c	/^# define YYSTACK_GAP_MAXIMUM /;"	d	file:
-YYSTACK_RELOCATE	tpc-2023-2024.tab.c	/^# define YYSTACK_RELOCATE(/;"	d	file:
-YYSTATE	lex.yy.c	/^#define YYSTATE /;"	d	file:
-YYSTYPE	tpc-2023-2024.tab.h	/^typedef int YYSTYPE;$/;"	t	typeref:typename:int
-YYSTYPE_IS_DECLARED	tpc-2023-2024.tab.h	/^# define YYSTYPE_IS_DECLARED /;"	d
-YYSTYPE_IS_TRIVIAL	tpc-2023-2024.tab.h	/^# define YYSTYPE_IS_TRIVIAL /;"	d
-YYSYMBOL_18_	tpc-2023-2024.tab.c	/^  YYSYMBOL_18_ = 18,                       \/* ';'  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_19_	tpc-2023-2024.tab.c	/^  YYSYMBOL_19_ = 19,                       \/* ','  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_20_	tpc-2023-2024.tab.c	/^  YYSYMBOL_20_ = 20,                       \/* '('  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_21_	tpc-2023-2024.tab.c	/^  YYSYMBOL_21_ = 21,                       \/* ')'  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_22_	tpc-2023-2024.tab.c	/^  YYSYMBOL_22_ = 22,                       \/* '{'  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_23_	tpc-2023-2024.tab.c	/^  YYSYMBOL_23_ = 23,                       \/* '}'  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_24_	tpc-2023-2024.tab.c	/^  YYSYMBOL_24_ = 24,                       \/* '='  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_25_	tpc-2023-2024.tab.c	/^  YYSYMBOL_25_ = 25,                       \/* '!'  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_ADDSUB	tpc-2023-2024.tab.c	/^  YYSYMBOL_ADDSUB = 14,                    \/* ADDSUB  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_AND	tpc-2023-2024.tab.c	/^  YYSYMBOL_AND = 11,                       \/* AND  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Arguments	tpc-2023-2024.tab.c	/^  YYSYMBOL_Arguments = 46,                 \/* Arguments  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_CHARACTER	tpc-2023-2024.tab.c	/^  YYSYMBOL_CHARACTER = 17,                 \/* CHARACTER  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Corps	tpc-2023-2024.tab.c	/^  YYSYMBOL_Corps = 35,                     \/* Corps  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_DIVSTAR	tpc-2023-2024.tab.c	/^  YYSYMBOL_DIVSTAR = 15,                   \/* DIVSTAR  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_DeclFonct	tpc-2023-2024.tab.c	/^  YYSYMBOL_DeclFonct = 31,                 \/* DeclFonct  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_DeclFoncts	tpc-2023-2024.tab.c	/^  YYSYMBOL_DeclFoncts = 30,                \/* DeclFoncts  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_DeclVars	tpc-2023-2024.tab.c	/^  YYSYMBOL_DeclVars = 28,                  \/* DeclVars  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Declarateurs	tpc-2023-2024.tab.c	/^  YYSYMBOL_Declarateurs = 29,              \/* Declarateurs  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_E	tpc-2023-2024.tab.c	/^  YYSYMBOL_E = 42,                         \/* E  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_ELSE	tpc-2023-2024.tab.c	/^  YYSYMBOL_ELSE = 7,                       \/* ELSE  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_EQ	tpc-2023-2024.tab.c	/^  YYSYMBOL_EQ = 12,                        \/* EQ  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_EnTeteFonct	tpc-2023-2024.tab.c	/^  YYSYMBOL_EnTeteFonct = 32,               \/* EnTeteFonct  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Exp	tpc-2023-2024.tab.c	/^  YYSYMBOL_Exp = 38,                       \/* Exp  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_F	tpc-2023-2024.tab.c	/^  YYSYMBOL_F = 44,                         \/* F  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_FB	tpc-2023-2024.tab.c	/^  YYSYMBOL_FB = 40,                        \/* FB  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_IDENT	tpc-2023-2024.tab.c	/^  YYSYMBOL_IDENT = 5,                      \/* IDENT  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_IF	tpc-2023-2024.tab.c	/^  YYSYMBOL_IF = 6,                         \/* IF  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Instr	tpc-2023-2024.tab.c	/^  YYSYMBOL_Instr = 37,                     \/* Instr  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_LValue	tpc-2023-2024.tab.c	/^  YYSYMBOL_LValue = 45,                    \/* LValue  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_ListExp	tpc-2023-2024.tab.c	/^  YYSYMBOL_ListExp = 47                    \/* ListExp  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_ListTypVar	tpc-2023-2024.tab.c	/^  YYSYMBOL_ListTypVar = 34,                \/* ListTypVar  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_M	tpc-2023-2024.tab.c	/^  YYSYMBOL_M = 41,                         \/* M  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_NUM	tpc-2023-2024.tab.c	/^  YYSYMBOL_NUM = 16,                       \/* NUM  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_OR	tpc-2023-2024.tab.c	/^  YYSYMBOL_OR = 10,                        \/* OR  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_ORDER	tpc-2023-2024.tab.c	/^  YYSYMBOL_ORDER = 13,                     \/* ORDER  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Parametres	tpc-2023-2024.tab.c	/^  YYSYMBOL_Parametres = 33,                \/* Parametres  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_Prog	tpc-2023-2024.tab.c	/^  YYSYMBOL_Prog = 27,                      \/* Prog  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_RETURN	tpc-2023-2024.tab.c	/^  YYSYMBOL_RETURN = 9,                     \/* RETURN  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_SuiteInstr	tpc-2023-2024.tab.c	/^  YYSYMBOL_SuiteInstr = 36,                \/* SuiteInstr  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_T	tpc-2023-2024.tab.c	/^  YYSYMBOL_T = 43,                         \/* T  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_TB	tpc-2023-2024.tab.c	/^  YYSYMBOL_TB = 39,                        \/* TB  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_TYPE	tpc-2023-2024.tab.c	/^  YYSYMBOL_TYPE = 3,                       \/* TYPE  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_VOID	tpc-2023-2024.tab.c	/^  YYSYMBOL_VOID = 4,                       \/* VOID  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_WHILE	tpc-2023-2024.tab.c	/^  YYSYMBOL_WHILE = 8,                      \/* WHILE  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_YYACCEPT	tpc-2023-2024.tab.c	/^  YYSYMBOL_YYACCEPT = 26,                  \/* $accept  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_YYEMPTY	tpc-2023-2024.tab.c	/^  YYSYMBOL_YYEMPTY = -2,$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_YYEOF	tpc-2023-2024.tab.c	/^  YYSYMBOL_YYEOF = 0,                      \/* "end of file"  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_YYUNDEF	tpc-2023-2024.tab.c	/^  YYSYMBOL_YYUNDEF = 2,                    \/* "invalid token"  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYSYMBOL_YYerror	tpc-2023-2024.tab.c	/^  YYSYMBOL_YYerror = 1,                    \/* error  *\/$/;"	e	enum:yysymbol_kind_t	file:
-YYTABLES_NAME	lex.yy.c	/^#define YYTABLES_NAME /;"	d	file:
-YYTABLE_NINF	tpc-2023-2024.tab.c	/^#define YYTABLE_NINF /;"	d	file:
-YYTOKENTYPE	tpc-2023-2024.tab.h	/^# define YYTOKENTYPE$/;"	d
-YYTRANSLATE	tpc-2023-2024.tab.c	/^#define YYTRANSLATE(/;"	d	file:
-YYUNDEF	tpc-2023-2024.tab.h	/^    YYUNDEF = 257,                 \/* "invalid token"  *\/$/;"	e	enum:yytokentype
-YY_	tpc-2023-2024.tab.c	/^#   define YY_(/;"	d	file:
-YY_	tpc-2023-2024.tab.c	/^#  define YY_(/;"	d	file:
-YY_ACCESSING_SYMBOL	tpc-2023-2024.tab.c	/^#define YY_ACCESSING_SYMBOL(/;"	d	file:
-YY_ASSERT	tpc-2023-2024.tab.c	/^#define YY_ASSERT(/;"	d	file:
-YY_ATTRIBUTE_PURE	tpc-2023-2024.tab.c	/^#  define YY_ATTRIBUTE_PURE /;"	d	file:
-YY_ATTRIBUTE_PURE	tpc-2023-2024.tab.c	/^#  define YY_ATTRIBUTE_PURE$/;"	d	file:
-YY_ATTRIBUTE_UNUSED	tpc-2023-2024.tab.c	/^#  define YY_ATTRIBUTE_UNUSED /;"	d	file:
-YY_ATTRIBUTE_UNUSED	tpc-2023-2024.tab.c	/^#  define YY_ATTRIBUTE_UNUSED$/;"	d	file:
-YY_AT_BOL	lex.yy.c	/^#define YY_AT_BOL(/;"	d	file:
-YY_BREAK	lex.yy.c	/^#define YY_BREAK /;"	d	file:
-YY_BUFFER_EOF_PENDING	lex.yy.c	/^#define YY_BUFFER_EOF_PENDING /;"	d	file:
-YY_BUFFER_NEW	lex.yy.c	/^#define YY_BUFFER_NEW /;"	d	file:
-YY_BUFFER_NORMAL	lex.yy.c	/^#define YY_BUFFER_NORMAL /;"	d	file:
-YY_BUFFER_STATE	lex.yy.c	/^typedef struct yy_buffer_state *YY_BUFFER_STATE;$/;"	t	typeref:struct:yy_buffer_state *	file:
-YY_BUF_SIZE	lex.yy.c	/^#define YY_BUF_SIZE /;"	d	file:
-YY_CAST	tpc-2023-2024.tab.c	/^#   define YY_CAST(/;"	d	file:
-YY_CHAR	lex.yy.c	/^typedef flex_uint8_t YY_CHAR;$/;"	t	typeref:typename:flex_uint8_t	file:
-YY_CURRENT_BUFFER	lex.yy.c	/^#define YY_CURRENT_BUFFER /;"	d	file:
-YY_CURRENT_BUFFER_LVALUE	lex.yy.c	/^#define YY_CURRENT_BUFFER_LVALUE /;"	d	file:
-YY_DECL	lex.yy.c	/^#define YY_DECL /;"	d	file:
-YY_DECL_IS_OURS	lex.yy.c	/^#define YY_DECL_IS_OURS /;"	d	file:
-YY_DO_BEFORE_ACTION	lex.yy.c	/^#define YY_DO_BEFORE_ACTION /;"	d	file:
-YY_END_OF_BUFFER	lex.yy.c	/^#define YY_END_OF_BUFFER /;"	d	file:
-YY_END_OF_BUFFER_CHAR	lex.yy.c	/^#define YY_END_OF_BUFFER_CHAR /;"	d	file:
-YY_EXIT_FAILURE	lex.yy.c	/^#define YY_EXIT_FAILURE /;"	d	file:
-YY_EXTRA_TYPE	lex.yy.c	/^#define YY_EXTRA_TYPE /;"	d	file:
-YY_FATAL_ERROR	lex.yy.c	/^#define YY_FATAL_ERROR(/;"	d	file:
-YY_FLEX_MAJOR_VERSION	lex.yy.c	/^#define YY_FLEX_MAJOR_VERSION /;"	d	file:
-YY_FLEX_MINOR_VERSION	lex.yy.c	/^#define YY_FLEX_MINOR_VERSION /;"	d	file:
-YY_FLEX_SUBMINOR_VERSION	lex.yy.c	/^#define YY_FLEX_SUBMINOR_VERSION /;"	d	file:
-YY_FLUSH_BUFFER	lex.yy.c	/^#define YY_FLUSH_BUFFER /;"	d	file:
-YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN	tpc-2023-2024.tab.c	/^#  define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN /;"	d	file:
-YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN	tpc-2023-2024.tab.c	/^# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN$/;"	d	file:
-YY_IGNORE_MAYBE_UNINITIALIZED_END	tpc-2023-2024.tab.c	/^# define YY_IGNORE_MAYBE_UNINITIALIZED_END /;"	d	file:
-YY_IGNORE_MAYBE_UNINITIALIZED_END	tpc-2023-2024.tab.c	/^# define YY_IGNORE_MAYBE_UNINITIALIZED_END$/;"	d	file:
-YY_IGNORE_USELESS_CAST_BEGIN	tpc-2023-2024.tab.c	/^# define YY_IGNORE_USELESS_CAST_BEGIN /;"	d	file:
-YY_IGNORE_USELESS_CAST_BEGIN	tpc-2023-2024.tab.c	/^# define YY_IGNORE_USELESS_CAST_BEGIN$/;"	d	file:
-YY_IGNORE_USELESS_CAST_END	tpc-2023-2024.tab.c	/^# define YY_IGNORE_USELESS_CAST_END /;"	d	file:
-YY_IGNORE_USELESS_CAST_END	tpc-2023-2024.tab.c	/^# define YY_IGNORE_USELESS_CAST_END$/;"	d	file:
-YY_INITIAL_VALUE	tpc-2023-2024.tab.c	/^# define YY_INITIAL_VALUE(/;"	d	file:
-YY_INPUT	lex.yy.c	/^#define YY_INPUT(/;"	d	file:
-YY_INT_ALIGNED	lex.yy.c	/^#define  YY_INT_ALIGNED /;"	d	file:
-YY_LESS_LINENO	lex.yy.c	/^    #define YY_LESS_LINENO(/;"	d	file:
-YY_LINENO_REWIND_TO	lex.yy.c	/^    #define YY_LINENO_REWIND_TO(/;"	d	file:
-YY_MORE_ADJ	lex.yy.c	/^#define YY_MORE_ADJ /;"	d	file:
-YY_NEW_FILE	lex.yy.c	/^#define YY_NEW_FILE /;"	d	file:
-YY_NULL	lex.yy.c	/^#define YY_NULL /;"	d	file:
-YY_NULLPTR	tpc-2023-2024.tab.c	/^#    define YY_NULLPTR /;"	d	file:
-YY_NULLPTR	tpc-2023-2024.tab.c	/^#   define YY_NULLPTR /;"	d	file:
-YY_NUM_RULES	lex.yy.c	/^#define YY_NUM_RULES /;"	d	file:
-YY_READ_BUF_SIZE	lex.yy.c	/^#define YY_READ_BUF_SIZE /;"	d	file:
-YY_REDUCE_PRINT	tpc-2023-2024.tab.c	/^# define YY_REDUCE_PRINT(/;"	d	file:
-YY_REINTERPRET_CAST	tpc-2023-2024.tab.c	/^#   define YY_REINTERPRET_CAST(/;"	d	file:
-YY_RESTORE_YY_MORE_OFFSET	lex.yy.c	/^#define YY_RESTORE_YY_MORE_OFFSET$/;"	d	file:
-YY_RULE_SETUP	lex.yy.c	/^#define YY_RULE_SETUP /;"	d	file:
-YY_SC_TO_UI	lex.yy.c	/^#define YY_SC_TO_UI(/;"	d	file:
-YY_STACK_PRINT	tpc-2023-2024.tab.c	/^# define YY_STACK_PRINT(/;"	d	file:
-YY_START	lex.yy.c	/^#define YY_START /;"	d	file:
-YY_START_STACK_INCR	lex.yy.c	/^#define YY_START_STACK_INCR /;"	d	file:
-YY_STATE_BUF_SIZE	lex.yy.c	/^#define YY_STATE_BUF_SIZE /;"	d	file:
-YY_STATE_EOF	lex.yy.c	/^#define YY_STATE_EOF(/;"	d	file:
-YY_STDINT_H	tpc-2023-2024.tab.c	/^#  define YY_STDINT_H$/;"	d	file:
-YY_STRUCT_YY_BUFFER_STATE	lex.yy.c	/^#define YY_STRUCT_YY_BUFFER_STATE$/;"	d	file:
-YY_SYMBOL_PRINT	tpc-2023-2024.tab.c	/^# define YY_SYMBOL_PRINT(/;"	d	file:
-YY_TRAILING_HEAD_MASK	lex.yy.c	/^#define YY_TRAILING_HEAD_MASK /;"	d	file:
-YY_TRAILING_MASK	lex.yy.c	/^#define YY_TRAILING_MASK /;"	d	file:
-YY_TYPEDEF_YY_BUFFER_STATE	lex.yy.c	/^#define YY_TYPEDEF_YY_BUFFER_STATE$/;"	d	file:
-YY_TYPEDEF_YY_SIZE_T	lex.yy.c	/^#define YY_TYPEDEF_YY_SIZE_T$/;"	d	file:
-YY_USE	tpc-2023-2024.tab.c	/^# define YY_USE(/;"	d	file:
-YY_USER_ACTION	lex.yy.c	/^#define YY_USER_ACTION$/;"	d	file:
-YY_YY_TPC_2023_2024_TAB_H_INCLUDED	tpc-2023-2024.tab.h	/^# define YY_YY_TPC_2023_2024_TAB_H_INCLUDED$/;"	d
-YYerror	tpc-2023-2024.tab.h	/^    YYerror = 256,                 \/* error  *\/$/;"	e	enum:yytokentype
-__STDC_LIMIT_MACROS	lex.yy.c	/^#define __STDC_LIMIT_MACROS /;"	d	file:
-__anonfef372ab0103	tpc-2023-2024.tab.c	/^enum { YYENOMEM = -2 };$/;"	g	file:
-all	makefile	/^all: $(BIN)tpcas clean$/;"	t
-alloca	tpc-2023-2024.tab.c	/^#    define alloca _alloca$/;"	d	file:
+__anon7c1c46a20103	src/tree.h	/^typedef enum {$/;"	g
+a	test/good/1.c	/^int a;$/;"	v	typeref:typename:int
+a	test/syn-err/1.c	/^int a;$/;"	v	typeref:typename:int
+addChild	src/tree.c	/^void addChild(Node *parent, Node *child) {$/;"	f	typeref:typename:void
+addSibling	src/tree.c	/^void addSibling(Node *node, Node *sibling) {$/;"	f	typeref:typename:void
+bin	makefile	/^bin obj:$/;"	t
+bin/tpcas	makefile	/^bin\/tpcas : obj\/lex.yy.o obj\/$(EXEC).tab.o obj\/tree.o | bin$/;"	t
 clean	makefile	/^clean:$/;"	t
-digit	src/tpc-2023-2024.lex	/^digit [0-9]$/;"	r
-escape	src/tpc-2023-2024.lex	/^escape [\\n\\t ]$/;"	r
-flex_int16_t	lex.yy.c	/^typedef int16_t flex_int16_t;$/;"	t	typeref:typename:int16_t	file:
-flex_int16_t	lex.yy.c	/^typedef short int flex_int16_t;$/;"	t	typeref:typename:short int	file:
-flex_int32_t	lex.yy.c	/^typedef int flex_int32_t;$/;"	t	typeref:typename:int	file:
-flex_int32_t	lex.yy.c	/^typedef int32_t flex_int32_t;$/;"	t	typeref:typename:int32_t	file:
-flex_int8_t	lex.yy.c	/^typedef int8_t flex_int8_t;$/;"	t	typeref:typename:int8_t	file:
-flex_int8_t	lex.yy.c	/^typedef signed char flex_int8_t;$/;"	t	typeref:typename:signed char	file:
-flex_uint16_t	lex.yy.c	/^typedef uint16_t flex_uint16_t;$/;"	t	typeref:typename:uint16_t	file:
-flex_uint16_t	lex.yy.c	/^typedef unsigned short int flex_uint16_t;$/;"	t	typeref:typename:unsigned short int	file:
-flex_uint32_t	lex.yy.c	/^typedef uint32_t flex_uint32_t;$/;"	t	typeref:typename:uint32_t	file:
-flex_uint32_t	lex.yy.c	/^typedef unsigned int flex_uint32_t;$/;"	t	typeref:typename:unsigned int	file:
-flex_uint8_t	lex.yy.c	/^typedef uint8_t flex_uint8_t;$/;"	t	typeref:typename:uint8_t	file:
-flex_uint8_t	lex.yy.c	/^typedef unsigned char flex_uint8_t; $/;"	t	typeref:typename:unsigned char	file:
+deleteTree	src/tree.c	/^void deleteTree(Node *node) {$/;"	f	typeref:typename:void
+divstar	src/tree.h	/^  divstar,$/;"	e	enum:__anon7c1c46a20103
+escape	src/tpc-2023-2024.lex	/^escape [\\t ]$/;"	r
+fact	test/good/1.c	/^int fact(void) $/;"	f	typeref:typename:int
+fact	test/syn-err/1.c	/^int fact(void) $/;"	f	typeref:typename:int
+firstChild	src/tree.h	/^  struct Node *firstChild, *nextSibling;$/;"	m	struct:Node	typeref:struct:Node *
+id	src/tree.h	/^  id$/;"	e	enum:__anon7c1c46a20103
+label	src/tree.h	/^  label_t label;$/;"	m	struct:Node	typeref:typename:label_t
+label_t	src/tree.h	/^} label_t;$/;"	t	typeref:enum:__anon7c1c46a20103
 letter	src/tpc-2023-2024.lex	/^letter [A-Za-z_]$/;"	r
-lineno	lex.yy.c	/^int lineno = 1;$/;"	v	typeref:typename:int
+lineno	src/tree.h	/^  int lineno;$/;"	m	struct:Node	typeref:typename:int
+main	test/good/2.c	/^int main(int argc) {$/;"	f	typeref:typename:int
+makeNode	src/tree.c	/^Node *makeNode(label_t label) {$/;"	f	typeref:typename:Node *
+nextSibling	src/tree.h	/^  struct Node *firstChild, *nextSibling;$/;"	m	struct:Node	typeref:struct:Node *
+obj	makefile	/^bin obj:$/;"	t
+obj/$(EXEC).tab.c	makefile	/^obj\/$(EXEC).tab.c : src\/$(EXEC).y obj\/tree.o | obj$/;"	t
+obj/$(EXEC).tab.o	makefile	/^obj\/$(EXEC).tab.o : obj\/$(EXEC).tab.c | obj$/;"	t
+obj/lex.yy.c	makefile	/^obj\/lex.yy.c: src\/$(EXEC).lex | obj$/;"	t
+obj/lex.yy.o	makefile	/^obj\/lex.yy.o : obj\/lex.yy.c obj\/$(EXEC).tab.c | obj $/;"	t
+obj/tree.o	makefile	/^obj\/tree.o : src\/tree.c src\/tree.h | obj$/;"	t
+printTree	src/tree.c	/^void printTree(Node *node) {$/;"	f	typeref:typename:void
 proj_anasynt	README.md	/^# proj_anasynt$/;"	c
-unput	lex.yy.c	/^#define unput(c) yyunput(/;"	d	file:
-yy_accept	lex.yy.c	/^static const flex_int16_t yy_accept[53] =$/;"	v	typeref:typename:const flex_int16_t[53]	file:
-yy_acclist	lex.yy.c	/^static const flex_int16_t yy_acclist[92] =$/;"	v	typeref:typename:const flex_int16_t[92]	file:
-yy_act	lex.yy.c	/^	int yy_act;$/;"	v	typeref:typename:int
-yy_amount_of_matched_text	lex.yy.c	/^		int yy_amount_of_matched_text = (int) (yy_cp - (yytext_ptr)) - 1;$/;"	v	typeref:typename:int
-yy_at_bol	lex.yy.c	/^	int yy_at_bol;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_base	lex.yy.c	/^static const flex_int16_t yy_base[55] =$/;"	v	typeref:typename:const flex_int16_t[55]	file:
-yy_bp	lex.yy.c	/^	char *yy_cp, *yy_bp;$/;"	v	typeref:typename:char *
-yy_bs_column	lex.yy.c	/^    int yy_bs_column; \/**< The column count. *\/$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_bs_lineno	lex.yy.c	/^    int yy_bs_lineno; \/**< The line count. *\/$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_buf_pos	lex.yy.c	/^	char *yy_buf_pos;		\/* current position in input buffer *\/$/;"	m	struct:yy_buffer_state	typeref:typename:char *	file:
-yy_buf_size	lex.yy.c	/^	int yy_buf_size;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_buffer_stack	lex.yy.c	/^static YY_BUFFER_STATE * yy_buffer_stack = NULL; \/**< Stack as an array. *\/$/;"	v	typeref:typename:YY_BUFFER_STATE *	file:
-yy_buffer_stack_max	lex.yy.c	/^static size_t yy_buffer_stack_max = 0; \/**< capacity of stack. *\/$/;"	v	typeref:typename:size_t	file:
-yy_buffer_stack_top	lex.yy.c	/^static size_t yy_buffer_stack_top = 0; \/**< index of top of stack. *\/$/;"	v	typeref:typename:size_t	file:
-yy_buffer_state	lex.yy.c	/^struct yy_buffer_state$/;"	s	file:
-yy_buffer_status	lex.yy.c	/^	int yy_buffer_status;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_c	lex.yy.c	/^			YY_CHAR yy_c = yy_ec[YY_SC_TO_UI(*yy_cp)] ;$/;"	v	typeref:typename:YY_CHAR
-yy_c_buf_p	lex.yy.c	/^static char *yy_c_buf_p = NULL;$/;"	v	typeref:typename:char *	file:
-yy_ch_buf	lex.yy.c	/^	char *yy_ch_buf;		\/* input buffer *\/$/;"	m	struct:yy_buffer_state	typeref:typename:char *	file:
-yy_chk	lex.yy.c	/^static const flex_int16_t yy_chk[160] =$/;"	v	typeref:typename:const flex_int16_t[160]	file:
-yy_cp	lex.yy.c	/^	char *yy_cp, *yy_bp;$/;"	v	typeref:typename:char *
-yy_create_buffer	lex.yy.c	/^    YY_BUFFER_STATE yy_create_buffer  (FILE * file, int  size )$/;"	f	typeref:typename:YY_BUFFER_STATE
-yy_current_state	lex.yy.c	/^	yy_state_type yy_current_state;$/;"	v	typeref:typename:yy_state_type
-yy_def	lex.yy.c	/^static const flex_int16_t yy_def[55] =$/;"	v	typeref:typename:const flex_int16_t[55]	file:
-yy_delete_buffer	lex.yy.c	/^    void yy_delete_buffer (YY_BUFFER_STATE  b )$/;"	f	typeref:typename:void
-yy_did_buffer_switch_on_eof	lex.yy.c	/^static int yy_did_buffer_switch_on_eof;$/;"	v	typeref:typename:int	file:
-yy_ec	lex.yy.c	/^static const YY_CHAR yy_ec[256] =$/;"	v	typeref:typename:const YY_CHAR[256]	file:
-yy_fatal_error	lex.yy.c	/^static void yynoreturn yy_fatal_error (const char* msg )$/;"	f	typeref:typename:void yynoreturn	file:
-yy_fill_buffer	lex.yy.c	/^	int yy_fill_buffer;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_flex_debug	lex.yy.c	/^int yy_flex_debug = 0;$/;"	v	typeref:typename:int
-yy_flex_strlen	lex.yy.c	/^static int yy_flex_strlen (const char * s )$/;"	f	typeref:typename:int	file:
-yy_flex_strncpy	lex.yy.c	/^static void yy_flex_strncpy (char* s1, const char * s2, int n )$/;"	f	typeref:typename:void	file:
-yy_flush_buffer	lex.yy.c	/^    void yy_flush_buffer (YY_BUFFER_STATE  b )$/;"	f	typeref:typename:void
-yy_full_lp	lex.yy.c	/^static int yy_full_lp;$/;"	v	typeref:typename:int	file:
-yy_full_match	lex.yy.c	/^static char *yy_full_match;$/;"	v	typeref:typename:char *	file:
-yy_full_state	lex.yy.c	/^static int *yy_full_state;$/;"	v	typeref:typename:int *	file:
-yy_get_next_buffer	lex.yy.c	/^static int yy_get_next_buffer (void)$/;"	f	typeref:typename:int	file:
-yy_get_previous_state	lex.yy.c	/^    static yy_state_type yy_get_previous_state (void)$/;"	f	typeref:typename:yy_state_type	file:
-yy_hold_char	lex.yy.c	/^static char yy_hold_char;$/;"	v	typeref:typename:char	file:
-yy_init	lex.yy.c	/^static int yy_init = 0;		\/* whether we need to initialize *\/$/;"	v	typeref:typename:int	file:
-yy_init_buffer	lex.yy.c	/^    static void yy_init_buffer  (YY_BUFFER_STATE  b, FILE * file )$/;"	f	typeref:typename:void	file:
-yy_init_globals	lex.yy.c	/^static int yy_init_globals (void)$/;"	f	typeref:typename:int	file:
-yy_input_file	lex.yy.c	/^	FILE *yy_input_file;$/;"	m	struct:yy_buffer_state	typeref:typename:FILE *	file:
-yy_is_interactive	lex.yy.c	/^	int yy_is_interactive;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_is_our_buffer	lex.yy.c	/^	int yy_is_our_buffer;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_load_buffer_state	lex.yy.c	/^static void yy_load_buffer_state  (void)$/;"	f	typeref:typename:void	file:
-yy_looking_for_trail_begin	lex.yy.c	/^static int yy_looking_for_trail_begin = 0;$/;"	v	typeref:typename:int	file:
-yy_lp	lex.yy.c	/^static int yy_lp;$/;"	v	typeref:typename:int	file:
-yy_meta	lex.yy.c	/^static const YY_CHAR yy_meta[27] =$/;"	v	typeref:typename:const YY_CHAR[27]	file:
-yy_n_chars	lex.yy.c	/^	int yy_n_chars;$/;"	m	struct:yy_buffer_state	typeref:typename:int	file:
-yy_n_chars	lex.yy.c	/^static int yy_n_chars;		\/* number of characters read into yy_ch_buf *\/$/;"	v	typeref:typename:int	file:
-yy_new_buffer	lex.yy.c	/^#define yy_new_buffer /;"	d	file:
-yy_next_state	lex.yy.c	/^			yy_state_type yy_next_state;$/;"	v	typeref:typename:yy_state_type
-yy_nxt	lex.yy.c	/^	flex_int32_t yy_nxt;$/;"	m	struct:yy_trans_info	typeref:typename:flex_int32_t	file:
-yy_nxt	lex.yy.c	/^static const flex_int16_t yy_nxt[160] =$/;"	v	typeref:typename:const flex_int16_t[160]	file:
-yy_reduce_print	tpc-2023-2024.tab.c	/^yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,$/;"	f	typeref:typename:void	file:
-yy_scan_buffer	lex.yy.c	/^YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )$/;"	f	typeref:typename:YY_BUFFER_STATE
-yy_scan_bytes	lex.yy.c	/^YY_BUFFER_STATE yy_scan_bytes  (const char * yybytes, int  _yybytes_len )$/;"	f	typeref:typename:YY_BUFFER_STATE
-yy_scan_string	lex.yy.c	/^YY_BUFFER_STATE yy_scan_string (const char * yystr )$/;"	f	typeref:typename:YY_BUFFER_STATE
-yy_set_bol	lex.yy.c	/^#define yy_set_bol(/;"	d	file:
-yy_set_interactive	lex.yy.c	/^#define yy_set_interactive(/;"	d	file:
-yy_size_t	lex.yy.c	/^typedef size_t yy_size_t;$/;"	t	typeref:typename:size_t	file:
-yy_stack_print	tpc-2023-2024.tab.c	/^yy_stack_print (yy_state_t *yybottom, yy_state_t *yytop)$/;"	f	typeref:typename:void	file:
-yy_start	lex.yy.c	/^static int yy_start = 0;	\/* start state number *\/$/;"	v	typeref:typename:int	file:
-yy_state_buf	lex.yy.c	/^static yy_state_type *yy_state_buf=0, *yy_state_ptr=0;$/;"	v	typeref:typename:yy_state_type *	file:
-yy_state_fast_t	tpc-2023-2024.tab.c	/^typedef int yy_state_fast_t;$/;"	t	typeref:typename:int	file:
-yy_state_ptr	lex.yy.c	/^static yy_state_type *yy_state_buf=0, *yy_state_ptr=0;$/;"	v	typeref:typename:yy_state_type *	file:
-yy_state_t	tpc-2023-2024.tab.c	/^typedef yytype_int8 yy_state_t;$/;"	t	typeref:typename:yytype_int8	file:
-yy_state_type	lex.yy.c	/^typedef int yy_state_type;$/;"	t	typeref:typename:int	file:
-yy_switch_to_buffer	lex.yy.c	/^    void yy_switch_to_buffer  (YY_BUFFER_STATE  new_buffer )$/;"	f	typeref:typename:void
-yy_symbol_print	tpc-2023-2024.tab.c	/^yy_symbol_print (FILE *yyo,$/;"	f	typeref:typename:void	file:
-yy_symbol_value_print	tpc-2023-2024.tab.c	/^yy_symbol_value_print (FILE *yyo,$/;"	f	typeref:typename:void	file:
-yy_trans_info	lex.yy.c	/^struct yy_trans_info$/;"	s	file:
-yy_try_NUL_trans	lex.yy.c	/^    static yy_state_type yy_try_NUL_trans  (yy_state_type yy_current_state )$/;"	f	typeref:typename:yy_state_type	file:
-yy_verify	lex.yy.c	/^	flex_int32_t yy_verify;$/;"	m	struct:yy_trans_info	typeref:typename:flex_int32_t	file:
-yyalloc	lex.yy.c	/^void *yyalloc (yy_size_t  size )$/;"	f	typeref:typename:void *
-yyalloc	tpc-2023-2024.tab.c	/^union yyalloc$/;"	u	file:
-yychar	tpc-2023-2024.tab.c	/^int yychar;$/;"	v	typeref:typename:int
-yycheck	tpc-2023-2024.tab.c	/^static const yytype_int8 yycheck[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yyclearin	tpc-2023-2024.tab.c	/^#define yyclearin /;"	d	file:
-yyconst	lex.yy.c	/^#define yyconst /;"	d	file:
-yydebug	tpc-2023-2024.tab.c	/^int yydebug;$/;"	v	typeref:typename:int
-yydefact	tpc-2023-2024.tab.c	/^static const yytype_int8 yydefact[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yydefgoto	tpc-2023-2024.tab.c	/^static const yytype_int8 yydefgoto[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yydestruct	tpc-2023-2024.tab.c	/^yydestruct (const char *yymsg,$/;"	f	typeref:typename:void	file:
-yyensure_buffer_stack	lex.yy.c	/^static void yyensure_buffer_stack (void)$/;"	f	typeref:typename:void	file:
-yyerrok	tpc-2023-2024.tab.c	/^#define yyerrok /;"	d	file:
-yyfree	lex.yy.c	/^void yyfree (void * ptr )$/;"	f	typeref:typename:void
-yyget_debug	lex.yy.c	/^int yyget_debug  (void)$/;"	f	typeref:typename:int
-yyget_in	lex.yy.c	/^FILE *yyget_in  (void)$/;"	f	typeref:typename:FILE *
-yyget_leng	lex.yy.c	/^int yyget_leng  (void)$/;"	f	typeref:typename:int
-yyget_lineno	lex.yy.c	/^int yyget_lineno  (void)$/;"	f	typeref:typename:int
-yyget_out	lex.yy.c	/^FILE *yyget_out  (void)$/;"	f	typeref:typename:FILE *
-yyget_text	lex.yy.c	/^char *yyget_text  (void)$/;"	f	typeref:typename:char *
-yyin	lex.yy.c	/^FILE *yyin = NULL, *yyout = NULL;$/;"	v	typeref:typename:FILE *
-yyinput	lex.yy.c	/^    static int yyinput (void)$/;"	f	typeref:typename:int	file:
-yyleng	lex.yy.c	/^int yyleng;$/;"	v	typeref:typename:int
-yyless	lex.yy.c	/^#define yyless(/;"	d	file:
-yylex_destroy	lex.yy.c	/^int yylex_destroy  (void)$/;"	f	typeref:typename:int
-yylineno	lex.yy.c	/^int yylineno = 1;$/;"	v	typeref:typename:int
-yylval	tpc-2023-2024.tab.c	/^YYSTYPE yylval;$/;"	v	typeref:typename:YYSTYPE
-yymore	lex.yy.c	/^#define yymore() yymore_/;"	d	file:
-yynerrs	tpc-2023-2024.tab.c	/^int yynerrs;$/;"	v	typeref:typename:int
-yynoreturn	lex.yy.c	/^#define yynoreturn /;"	d	file:
-yynoreturn	lex.yy.c	/^#define yynoreturn$/;"	d	file:
-yyout	lex.yy.c	/^FILE *yyin = NULL, *yyout = NULL;$/;"	v	typeref:typename:FILE *
-yypact	tpc-2023-2024.tab.c	/^static const yytype_int8 yypact[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yypact_value_is_default	tpc-2023-2024.tab.c	/^#define yypact_value_is_default(/;"	d	file:
-yyparse	tpc-2023-2024.tab.c	/^yyparse (void)$/;"	f	typeref:typename:int
-yypgoto	tpc-2023-2024.tab.c	/^static const yytype_int8 yypgoto[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yypop_buffer_state	lex.yy.c	/^void yypop_buffer_state (void)$/;"	f	typeref:typename:void
-yypush_buffer_state	lex.yy.c	/^void yypush_buffer_state (YY_BUFFER_STATE new_buffer )$/;"	f	typeref:typename:void
-yyr1	tpc-2023-2024.tab.c	/^static const yytype_int8 yyr1[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yyr2	tpc-2023-2024.tab.c	/^static const yytype_int8 yyr2[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yyrealloc	lex.yy.c	/^void *yyrealloc  (void * ptr, yy_size_t  size )$/;"	f	typeref:typename:void *
-yyrestart	lex.yy.c	/^    void yyrestart  (FILE * input_file )$/;"	f	typeref:typename:void
-yyrline	tpc-2023-2024.tab.c	/^static const yytype_int8 yyrline[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yyset_debug	lex.yy.c	/^void yyset_debug (int  _bdebug )$/;"	f	typeref:typename:void
-yyset_in	lex.yy.c	/^void yyset_in (FILE *  _in_str )$/;"	f	typeref:typename:void
-yyset_lineno	lex.yy.c	/^void yyset_lineno (int  _line_number )$/;"	f	typeref:typename:void
-yyset_out	lex.yy.c	/^void yyset_out (FILE *  _out_str )$/;"	f	typeref:typename:void
-yyss_alloc	tpc-2023-2024.tab.c	/^  yy_state_t yyss_alloc;$/;"	m	union:yyalloc	typeref:typename:yy_state_t	file:
-yystos	tpc-2023-2024.tab.c	/^static const yytype_int8 yystos[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yysymbol_kind_t	tpc-2023-2024.tab.c	/^enum yysymbol_kind_t$/;"	g	file:
-yysymbol_kind_t	tpc-2023-2024.tab.c	/^typedef enum yysymbol_kind_t yysymbol_kind_t;$/;"	t	typeref:enum:yysymbol_kind_t	file:
-yysymbol_name	tpc-2023-2024.tab.c	/^yysymbol_name (yysymbol_kind_t yysymbol)$/;"	f	typeref:typename:const char *	file:
-yytable	tpc-2023-2024.tab.c	/^static const yytype_int8 yytable[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yytable_value_is_error	tpc-2023-2024.tab.c	/^#define yytable_value_is_error(/;"	d	file:
-yyterminate	lex.yy.c	/^#define yyterminate(/;"	d	file:
-yytext	lex.yy.c	/^char *yytext;$/;"	v	typeref:typename:char *
-yytext_ptr	lex.yy.c	/^#define yytext_ptr /;"	d	file:
-yytname	tpc-2023-2024.tab.c	/^static const char *const yytname[] =$/;"	v	typeref:typename:const char * const[]	file:
-yytoken_kind_t	tpc-2023-2024.tab.h	/^  typedef enum yytokentype yytoken_kind_t;$/;"	t	typeref:enum:yytokentype
-yytokentype	tpc-2023-2024.tab.h	/^  enum yytokentype$/;"	g
-yytranslate	tpc-2023-2024.tab.c	/^static const yytype_int8 yytranslate[] =$/;"	v	typeref:typename:const yytype_int8[]	file:
-yytype_int16	tpc-2023-2024.tab.c	/^typedef __INT_LEAST16_TYPE__ yytype_int16;$/;"	t	typeref:typename:__INT_LEAST16_TYPE__	file:
-yytype_int16	tpc-2023-2024.tab.c	/^typedef int_least16_t yytype_int16;$/;"	t	typeref:typename:int_least16_t	file:
-yytype_int16	tpc-2023-2024.tab.c	/^typedef short yytype_int16;$/;"	t	typeref:typename:short	file:
-yytype_int8	tpc-2023-2024.tab.c	/^typedef __INT_LEAST8_TYPE__ yytype_int8;$/;"	t	typeref:typename:__INT_LEAST8_TYPE__	file:
-yytype_int8	tpc-2023-2024.tab.c	/^typedef int_least8_t yytype_int8;$/;"	t	typeref:typename:int_least8_t	file:
-yytype_int8	tpc-2023-2024.tab.c	/^typedef signed char yytype_int8;$/;"	t	typeref:typename:signed char	file:
-yytype_uint16	tpc-2023-2024.tab.c	/^typedef __UINT_LEAST16_TYPE__ yytype_uint16;$/;"	t	typeref:typename:__UINT_LEAST16_TYPE__	file:
-yytype_uint16	tpc-2023-2024.tab.c	/^typedef int yytype_uint16;$/;"	t	typeref:typename:int	file:
-yytype_uint16	tpc-2023-2024.tab.c	/^typedef uint_least16_t yytype_uint16;$/;"	t	typeref:typename:uint_least16_t	file:
-yytype_uint16	tpc-2023-2024.tab.c	/^typedef unsigned short yytype_uint16;$/;"	t	typeref:typename:unsigned short	file:
-yytype_uint8	tpc-2023-2024.tab.c	/^typedef __UINT_LEAST8_TYPE__ yytype_uint8;$/;"	t	typeref:typename:__UINT_LEAST8_TYPE__	file:
-yytype_uint8	tpc-2023-2024.tab.c	/^typedef short yytype_uint8;$/;"	t	typeref:typename:short	file:
-yytype_uint8	tpc-2023-2024.tab.c	/^typedef uint_least8_t yytype_uint8;$/;"	t	typeref:typename:uint_least8_t	file:
-yytype_uint8	tpc-2023-2024.tab.c	/^typedef unsigned char yytype_uint8;$/;"	t	typeref:typename:unsigned char	file:
-yyunput	lex.yy.c	/^    static void yyunput (int c, char * yy_bp )$/;"	f	typeref:typename:void	file:
-yyvs_alloc	tpc-2023-2024.tab.c	/^  YYSTYPE yyvs_alloc;$/;"	m	union:yyalloc	typeref:typename:YYSTYPE	file:

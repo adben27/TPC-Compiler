@@ -1,6 +1,25 @@
 # proj_anasynt
 Projet d'Analyse Syntaxique, L3 UGE
+Ce projet vise à créer un analyseur syntaxique de TPC (c'est un sous-ensemble de C) afin d'afficher l'arbre abstrait d'un fichier TPC.
 
-Le répertoire contient :
-- le répertoire `bin` : il contient l'exécutable (`tpcas`)
-- le répertoire `obj` qui contient les fichiers intermédiaires entre les sou- le répertoire `src` qui contient les fichiers sources
+Adel BENNOUAR, Thibault VIALLARD
+
+## Compilation
+
+Exécuter `make`.
+Un exécutable `tpcas` sera alors créé dans le répertoire `bin`.
+Il suffit alors d'exécuter `tpcas` : 
+
+```bash
+$ bin/tpcas
+```
+
+## Structure de l'arbre abstrait 
+
+A définir.
+
+## Implémentation des tableaux
+
+A définir.
+
+
