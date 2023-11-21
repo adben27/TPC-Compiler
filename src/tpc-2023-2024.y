@@ -3,14 +3,26 @@
 #include "tree.h"
 #include <stdio.h>
 extern int lineno;
+extern int column;
 int yylex();
 int yyerror(char*);
 %}
 
-%token TYPE VOID IDENT IF ELSE WHILE RETURN OR AND EQ ORDER ADDSUB DIVSTAR NUM CHARACTER  
+%union {
+	char byte;
+	int num;
+	char ident[64];
+	char comp[3];
+}
+
+%token<byte> CHARACTER ADDSUB DIVSTAR
+%token<num> NUM
+%token<ident> TYPE VOID IDENT IF ELSE WHILE RETURN
+%token<comp> EQ ORDER
+%token OR AND
 
 %%
-Prog:  DeclVars DeclFoncts
+Prog:  DeclVars DeclFoncts {/*printTree($$); deleteTree($$);*/}
     ;
 DeclVars:
        DeclVars TYPE Declarateurs ';'
@@ -70,8 +82,8 @@ M   :  M ORDER E
     ;
 E   :  E ADDSUB T
     |  T
-    ;    
-T   :  T DIVSTAR F 
+    ;
+T   :  T DIVSTAR F
     |  F
     ;
 F   :  ADDSUB F
@@ -96,10 +108,10 @@ ListExp:
 %%
 
 int yyerror(char *msg) {
-	fprintf(stderr, "%s at line %d\n", msg, lineno);
+	fprintf(stderr, "%s at line %d and column %d\n", msg, lineno, column);
 	return 0;
 }
 
 int main(){
-	return yyparse();
+	return !yyparse();
 }

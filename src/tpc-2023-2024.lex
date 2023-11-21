@@ -2,60 +2,126 @@
 /* Analyseur syntaxique TPC*/
 #include "tree.h"
 #include "tpc-2023-2024.tab.h"
+#include <string.h>
+#include <stdlib.h>
 int lineno = 1;
+int column = 1;
 %}
 
 %option noinput
 %option nounput
 
-letter [A-Za-z_]
 escape [\t ]
 
 %x COM COMS
 
 %%
-"," return ',';
+";" { column+= yyleng; return ';'; }
+"," { column++; return ','; }
 
-"(" return '(';
-")" return ')';
-"{" return '{';
-"}" return '}';
+"(" { column++; return '('; }
+")" { column++; return ')'; }
+"{" { column++; return '{'; }
+"}" { column++; return '}'; }
 
-"=" return '=';
-"!" return '!';
+"=" { column++; return '='; }
+"!" { column++; return '!'; }
 
 "//" BEGIN COM;
 <COM>. ;
-<COM>\n BEGIN INITIAL;
+<COM>\n { BEGIN INITIAL; lineno++; column = 1; }
 "/*" BEGIN COMS;
 <COMS>"*/" BEGIN INITIAL;
+<COMS>\n { column = 1; lineno++; }
 <COMS>. ;
 
-return return RETURN;
-if return IF;
-else return ELSE;
-while return WHILE;
+return {
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return RETURN; 
+}
 
-void return VOID;
-int|char return TYPE;
+if {
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return IF; 
+}
 
-[+-] return ADDSUB;
-[*/%] return ADDSUB;
+else {
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return ELSE;
+}
 
-[<>] return ORDER;
-[<>]= return ORDER;
+while {
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return WHILE; 
+}
 
-==|!= return EQ;
-"||" return OR;
-"&&" return AND;
+void { 
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return VOID;
+}
 
-[0-9]+ return NUM;
+int|char {
+	column += yyleng;
+	strcpy(yylval.ident, yytext);
+	return TYPE; 
+}
 
-{letter}+ return IDENT;
+[+-] {
+	column += yyleng;
+	yylval.byte = yytext[0];
+	return ADDSUB; 
+}
 
-\n lineno++;
+[*/%] {
+	column += yyleng;
+	yylval.byte = yytext[0];
+	return DIVSTAR; 
+}
 
-{escape}+ ;
-";" return ';';
-. return CHARACTER;
+[<>] {
+	column += yyleng;
+	strcpy(yylval.comp, yytext);
+	return ORDER;
+}
+[<>]= {
+	column += yyleng;
+	strcpy(yylval.comp, yytext);
+	return ORDER;
+}
+
+"=="|"!=" {
+	column += yyleng;
+	strcpy(yylval.comp, yytext);
+	return EQ;
+}
+"||" { column += yyleng; return OR; }
+"&&" { column += yyleng; return AND; }
+
+-?[0-9]+ {
+	column += yyleng;
+	yylval.num = atoi(yytext);
+	return NUM;
+}
+
+[A-Za-z_][A-Za-z0-9]* {
+	column += yyleng;
+  	strcpy(yylval.ident, yytext);
+  	return IDENT; 
+}
+
+[A-Za-z] {
+	column += yyleng;
+	yylval.byte = yytext[0];
+	return CHARACTER;
+}
+
+\n { column = 1; lineno++; }
+
+{escape}+ column += yyleng;
+. ;
 %%
