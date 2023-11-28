@@ -9,12 +9,14 @@ int yyerror(char*);
 %}
 
 %union {
+    Node *node;    
 	char byte;
 	int num;
 	char ident[64];
 	char comp[3];
 }
 
+// %type<node> Prog DeclVars Declarateurs DeclFoncts
 %token<byte> CHARACTER ADDSUB DIVSTAR
 %token<num> NUM
 %token<ident> TYPE VOID IDENT IF ELSE WHILE RETURN
@@ -22,15 +24,15 @@ int yyerror(char*);
 %token OR AND
 
 %%
-Prog:  DeclVars DeclFoncts {/*printTree($$); deleteTree($$);*/}
+Prog:  DeclVars DeclFoncts //{$$ = makeNode(program); addChild($$, $1); addSibling($1,$2); printTree($$); deleteTree($$);}
     ;
 DeclVars:
-       DeclVars TYPE Declarateurs ';'
-    |
+       DeclVars TYPE Declarateurs ';' //{addChild($1, makeNode(declaration)); $$ = $1;}
+    | //{$$ = makeNode(declarations);}
     ;
 Declarateurs:
-       Declarateurs ',' IDENT
-    |  IDENT
+       Declarateurs ',' IDENT {}  
+    |  IDENT //{addChild($$, makeNode(ident));}
     ;
 DeclFoncts:
        DeclFoncts DeclFonct
