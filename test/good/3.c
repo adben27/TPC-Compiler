@@ -1,7 +1,8 @@
 int main(void) {
-	int key = 0;
-	char image = initialiser_fenetre("Taquin en C", "bin/montagne.png");
-	char plateau = initialisation_plateau();
+	int key; char image; char plateau; char title;
+	key = 0;
+	image = initialiser_fenetre(title, image);
+	plateau = initialisation_plateau();
 	random_generation(plateau);
 	while(key != 1) {
 		split_print(image, plateau);

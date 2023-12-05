@@ -1,4 +1,5 @@
-##!/bin/bash
+#!/bin/bash
+
 if test -e log; then
 	rm log
 fi

@@ -108,20 +108,20 @@ int|char {
 	return NUM;
 }
 
-[A-Za-z_][A-Za-z0-9]* {
-	column += yyleng;
-  	strcpy(yylval.ident, yytext);
-  	return IDENT; 
-}
-
 [A-Za-z] {
 	column += yyleng;
 	yylval.byte = yytext[0];
 	return CHARACTER;
 }
 
-\n { column = 1; lineno++; }
+[A-Za-z_][A-Za-z0-9_]* {
+	column += yyleng;
+  	strcpy(yylval.ident, yytext);
+  	return IDENT; 
+}
 
+\n { column = 1; lineno++; }
 {escape}+ column += yyleng;
+
 . ;
 %%
