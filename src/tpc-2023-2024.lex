@@ -108,7 +108,8 @@ int|char {
 	return NUM;
 }
 
-[A-Za-z] {
+
+"'"[A-Za-z]"'" {
 	column += yyleng;
 	yylval.byte = yytext[0];
 	return CHARACTER;
