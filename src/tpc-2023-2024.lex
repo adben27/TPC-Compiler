@@ -11,12 +11,12 @@ int column = 1;
 %option noinput
 %option nounput
 
-escape [\t ]
+escape [\r\t ]
 
 %x COM COMS
 
 %%
-";" { column+= yyleng; return ';'; }
+";" { column++; return ';'; }
 "," { column++; return ','; }
 
 "(" { column++; return '('; }
@@ -108,7 +108,7 @@ int|char {
 	return NUM;
 }
 
-[A-Za-z] {
+"'"[A-Za-z]"'" {
 	column += yyleng;
 	yylval.byte = yytext[0];
 	return CHARACTER;

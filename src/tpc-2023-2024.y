@@ -23,6 +23,8 @@ int yyerror(char*);
 %token<comp> EQ ORDER
 %token OR AND
 
+%expect 1
+
 %%
 Prog:  DeclVars DeclFoncts //{$$ = makeNode(program); addChild($$, $1); addSibling($1,$2); printTree($$); deleteTree($$);}
     ;
@@ -31,7 +33,7 @@ DeclVars:
     | //{$$ = makeNode(declarations);}
     ;
 Declarateurs:
-       Declarateurs ',' IDENT {}  
+       Declarateurs ',' IDENT  
     |  IDENT //{addChild($$, makeNode(ident));}
     ;
 DeclFoncts:
@@ -114,6 +116,6 @@ int yyerror(char *msg) {
 	return 0;
 }
 
-int main(){
-	return !yyparse();
+int main() {
+	return yyparse();
 }

@@ -1,4 +1,4 @@
-int 
+int
 a;
 
 int fact(void) 

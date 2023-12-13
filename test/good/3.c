@@ -1,5 +1,5 @@
 int main(void) {
-	int key; char image; char plateau; char title;
+	int key; char image, plateau, title;
 	key = 0;
 	image = initialiser_fenetre(title, image);
 	plateau = initialisation_plateau();

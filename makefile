@@ -21,6 +21,7 @@ obj/$(EXEC).tab.o : obj/$(EXEC).tab.c | obj
 obj/lex.yy.o : obj/lex.yy.c obj/$(EXEC).tab.c | obj 
 	$(CC) -o $@ -c $< $(CFLAGS)
 
+# Utiliser l'option -d pour debug
 obj/lex.yy.c: src/$(EXEC).lex | obj
 	  flex -o $@ $<
 
