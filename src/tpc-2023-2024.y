@@ -54,6 +54,7 @@ Parametres:
 ListTypVar:
        ListTypVar ',' TYPE IDENT
     |  TYPE IDENT
+    |  TYPE IDENT '[' ']'
     ;
 Corps: '{' DeclVars SuiteInstr '}'
     ;
