@@ -24,4 +24,4 @@ for file in test/syn-err/*; do
 	echo -e "\n" >> log
 done
 
-less log
+vim -R log

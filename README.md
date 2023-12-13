@@ -14,10 +14,6 @@ Il suffit alors d'exécuter `tpcas` :
 $ bin/tpcas
 ```
 
-## Structure de l'arbre abstrait 
-
-A définir.
-
 ## Implémentation des tableaux
 
 A définir.

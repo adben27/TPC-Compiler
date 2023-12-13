@@ -1,4 +1,4 @@
-char test(int f) {
+char test(int f[]) {
     int i;
     i=0;
     while(i != (f/2) || i != (f%2)) {
