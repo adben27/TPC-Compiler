@@ -4,7 +4,18 @@ typedef enum {
   E,
   T,
   divstar,
-  ident
+  /*ident,
+  declaration,
+  declarations,
+  fonctions,
+  fonction,
+  type,
+  parametres,
+  vars,
+  instr,
+  si,
+  pendant,
+  sinon*/
   /* list all other node labels, if any */
   /* The list must coincide with the string array in tree.c */
   /* To avoid listing them twice, see https://stackoverflow.com/a/10966395 */

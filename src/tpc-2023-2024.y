@@ -20,13 +20,12 @@ int yyerror(char*);
 %token<byte> CHARACTER ADDSUB DIVSTAR
 %token<num> NUM
 %token<ident> TYPE VOID IDENT IF ELSE WHILE RETURN
-%token<comp> EQ ORDER
-%token OR AND
+%token<comp> EQ ORDER OR AND
 
 %expect 1
 
 %%
-Prog:  DeclVars DeclFoncts {$$ = makeNode(program); addChild($$, $1); addSibling($1,$2); printTree($$); deleteTree($$);}
+Prog:  DeclVars DeclFoncts {$$ = makeNode(program); addChild($$, $1); addChild($$, $2); printTree($$); deleteTree($$);}
     ;
 DeclVars:
        DeclVars TYPE Declarateurs ';' {addChild($1, makeNode(declaration)); $$ = $1;}
@@ -37,7 +36,7 @@ Declarateurs:
     |  IDENT {addChild($$, makeNode(ident));}
     ;
 DeclFoncts:
-       DeclFoncts DeclFonct {$$ = $1; addChild($$, $2);}
+       DeclFoncts DeclFonct {addChild($1, makeNode(fonction)); $$ = $1;}
     |  DeclFonct {addChild($$, $1);}
     ;
 DeclFonct:
@@ -45,11 +44,11 @@ DeclFonct:
     ;
 EnTeteFonct:
        TYPE IDENT '(' Parametres ')' { addChild($$, makeNode(type)); addChild($$, makeNode(ident)); addChild($$, $4);}
-    |  VOID IDENT '(' Parametres ')'
+    |  VOID IDENT '(' Parametres ')' { addChild($$, makeNode(ident)); addChild($$, $4);}
     ;
 Parametres:
-       VOID {addChild($$, makeNode(void));}
-    |  ListTypVar {$$ = $1;}
+       VOID {}
+    |  ListTypVar {addChild($1, makeNode(parametres)); $$ = $1; }
     ;
 ListTypVar:
        ListTypVar ',' TYPE IDENT { $$ = $1; addChild($$, makeNode(type)); addChild($$, makeNode(ident));}

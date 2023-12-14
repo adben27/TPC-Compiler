@@ -27,8 +27,8 @@ escape [\r\t ]
 "=" { column++; return '='; }
 "!" { column++; return '!'; }
 
-"[" { column++; return "["; }
-"]" { column++; return "]"; }
+"[" { column++; return '['; }
+"]" { column++; return ']'; }
 
 "//" BEGIN COM;
 <COM>. ;
