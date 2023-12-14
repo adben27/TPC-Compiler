@@ -65,13 +65,13 @@ SuiteInstr:
 Instr:
        LValue '=' Exp ';' {$$ = $1; addChild($$,makeNode(=)); addChild($$, $1); addChild($$, $3);}
     |  IF '(' Exp ')' Instr {$$ = $5; $1 = addChild(if); addChild($$, $1); addChild($1, $3);}
-    |  IF '(' Exp ')' Instr ELSE Instr
+    |  IF '(' Exp ')' Instr ELSE Instr {}
     |  WHILE '(' Exp ')' Instr {$$ = $5; $1 = addChild(while); addChild($$, $1); addChild($1, $3);}
     |  IDENT '(' Arguments  ')' ';' {$$ = $3; addChild($$, makeNode(ident));}
     |  RETURN Exp ';' {$1 = makeNode(return); addChild($$, $1); addChild($1, $2);}
     |  RETURN ';' {addChild($$, makeNode(return));}
     |  '{' SuiteInstr '}' {$$ = $2;}
-    |  ';'
+    |  ';' {}
     ;
 Exp :  Exp OR TB {$$ = makeNode(||);; addChild($$, $1); addSibling($1, $3);}
     |  TB {$$ = $1;}
@@ -91,9 +91,9 @@ E   :  E ADDSUB T {$$ = makeNode(addsub); addChild($$, $1); addSibling($1, $3);}
 T   :  T DIVSTAR F {$$ = makeNode(divstar); addChild($$, $1); addSibling($1, $3);}
     |  F {$$ = $1;}
     ;
-F   :  ADDSUB F {$$ = $1; addChild($$, $2);}
-    |  '!' F {$$ = $1; addChild($$, $2);}
-    |  '(' Exp ')' {makeNode($$, makeNode(!));}
+F   :  ADDSUB F {$$ = $2; addChild($$, $2);}
+    |  '!' F {$$ = makeNode(!); addChild($$, $2);}
+    |  '(' Exp ')' { addChild($$, $2);}
     |  NUM {addChild($$, makeNode(num));}
     |  CHARACTER {addChild($$, makeNode(character));}
     |  LValue {$$ = $1;} 
