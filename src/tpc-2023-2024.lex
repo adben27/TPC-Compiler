@@ -27,6 +27,9 @@ escape [\r\t ]
 "=" { column++; return '='; }
 "!" { column++; return '!'; }
 
+"[" { column++; return "["; }
+"]" { column++; return "]"; }
+
 "//" BEGIN COM;
 <COM>. ;
 <COM>\n { BEGIN INITIAL; lineno++; column = 1; }

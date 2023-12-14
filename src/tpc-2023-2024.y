@@ -54,6 +54,7 @@ Parametres:
 ListTypVar:
        ListTypVar ',' TYPE IDENT { $$ = $1; addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
     |  TYPE IDENT { addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
+    |  TYPE IDENT '[' ']' {}
     ;
 Corps: '{' DeclVars SuiteInstr '}' {$2 = makeNode(vars); addChild($$, $2); addChild($$, $3);}
     ;
