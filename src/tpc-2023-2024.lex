@@ -125,6 +125,4 @@ int|char {
 
 \n { column = 1; lineno++; }
 {escape}+ column += yyleng;
-
-. ;
 %%

@@ -2,6 +2,7 @@
 /* Bison de départ projet TPC */
 #include "tree.h"
 #include <stdio.h>
+#include <string.h>
 extern int lineno;
 extern int column;
 int yylex();
@@ -25,88 +26,88 @@ int yyerror(char*);
 %expect 1
 
 %%
-Prog:  DeclVars DeclFoncts {$$ = makeNode(program); addChild($$, $1); addChild($$, $2); printTree($$); deleteTree($$);}
+Prog:  DeclVars DeclFoncts { $$ = makeNode(program); addChild($$, $1);/*addChild($$, $2);*/ printTree($$); deleteTree($$);}
     ;
 DeclVars:
-       DeclVars TYPE Declarateurs ';' {addChild($1, makeNode(declaration)); $$ = $1;}
+       DeclVars TYPE Declarateurs ';' {addChild($1, makeNode(declaration)); $$ = $1; addChild($$, makeNode(type));}
     | {$$ = makeNode(declarations);}
     ;
 Declarateurs:
        Declarateurs ',' IDENT {$$ = $1; addChild($$, makeNode(ident));} 
-    |  IDENT {addChild($$, makeNode(ident));}
+    |  IDENT {$$ = makeNode(ident);}
     ;
 DeclFoncts:
-       DeclFoncts DeclFonct {addChild($1, makeNode(fonction)); $$ = $1;}
-    |  DeclFonct {addChild($$, $1);}
+       DeclFoncts DeclFonct { $$ = $1;}
+    |  DeclFonct {$$ = makeNode(fonctions); $$ = $1;}
     ;
 DeclFonct:
-       EnTeteFonct Corps { addChild($$, $1); addChild($$, $2);}
+       EnTeteFonct Corps { $$ = makeNode(fonction); addChild($$, $1); addChild($$, $2);}
     ;
 EnTeteFonct:
-       TYPE IDENT '(' Parametres ')' { addChild($$, makeNode(type)); addChild($$, makeNode(ident)); addChild($$, $4);}
+       TYPE IDENT '(' Parametres ')' { $$ = makeNode(entete); addChild($$, makeNode(type)); addChild($$, makeNode(ident)); addChild($$, $4);}
     |  VOID IDENT '(' Parametres ')' { addChild($$, makeNode(ident)); addChild($$, $4);}
     ;
 Parametres:
        VOID {}
-    |  ListTypVar {addChild($1, makeNode(parametres)); $$ = $1; }
+    |  ListTypVar {$$ = makeNode(parametres); $$ = $1; }
     ;
 ListTypVar:
        ListTypVar ',' TYPE IDENT { $$ = $1; addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
-    |  TYPE IDENT { addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
+    |  TYPE IDENT { $$ = makeNode(vars); addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
     |  TYPE IDENT '[' ']' {}
     ;
-Corps: '{' DeclVars SuiteInstr '}' {$2 = makeNode(vars); addChild($$, $2); addChild($$, $3);}
+Corps: '{' DeclVars SuiteInstr '}' { $$ = makeNode(corps); addChild($$, $2); addChild($$, $3);}
     ;
 SuiteInstr:
-       SuiteInstr Instr {$$ = $1};
-    | {$$ = makeNode(instr);}
+       SuiteInstr Instr {addChild($1, makeNode(instruction)); $$ = $1;}
+    | {$$ = makeNode(instructions);}
     ;
 Instr:
-       LValue '=' Exp ';' {$$ = $1; addChild($$,makeNode(=)); addChild($$, $1); addChild($$, $3);}
-    |  IF '(' Exp ')' Instr {$$ = $5; $1 = addChild(if); addChild($$, $1); addChild($1, $3);}
+       LValue '=' Exp ';' {$$ = makeNode(eq); addChild($$, $1); addChild($$, $3);}
+    |  IF '(' Exp ')' Instr {$$ = makeNode(ifcond); addChild($$, $3); addChild($$, $5);}
     |  IF '(' Exp ')' Instr ELSE Instr {}
-    |  WHILE '(' Exp ')' Instr {$$ = $5; $1 = addChild(while); addChild($$, $1); addChild($1, $3);}
-    |  IDENT '(' Arguments  ')' ';' {$$ = $3; addChild($$, makeNode(ident));}
-    |  RETURN Exp ';' {$1 = makeNode(return); addChild($$, $1); addChild($1, $2);}
-    |  RETURN ';' {addChild($$, makeNode(return));}
-    |  '{' SuiteInstr '}' {$$ = $2;}
+    |  WHILE '(' Exp ')' Instr {$$ = makeNode(whilecond); addChild($$, $3); addChild($$, $5);}
+    |  IDENT '(' Arguments  ')' ';' { $$ = makeNode(ident); $$ = $3;}
+    |  RETURN Exp ';' {$$ = makeNode(returncond); addChild($$, $2);}
+    |  RETURN ';' {$$ = makeNode(returncond);}
+    |  '{' SuiteInstr '}' { $$ = $2;}
     |  ';' {}
     ;
-Exp :  Exp OR TB {$$ = makeNode(||);; addChild($$, $1); addSibling($1, $3);}
+Exp :  Exp OR TB {$$ = makeNode(or); addChild($$, $1); addChild($$, $3);}
     |  TB {$$ = $1;}
     ;
-TB  :  TB AND FB {$$ = makeNode(&&); addChild($$, $1); addSibling($1, $3);}
+TB  :  TB AND FB {$$ = makeNode(and); addChild($$, $1); addChild($$, $3);}
     |  FB {$$ = $1;}
     ;
-FB  :  FB EQ M {$$ = makeNode(eq); addChild($$, $1); addSibling($1, $3);}
+FB  :  FB EQ M {$$ = makeNode(eq); addChild($$, $1); addChild($$, $3);}
     |  M {$$ = $1;}
     ;
-M   :  M ORDER E {$$ = makeNode(order); addChild($$, $1); addSibling($1, $3);}
+M   :  M ORDER E {$$ = makeNode(order); addChild($$, $1); addChild($$, $3);}
     |  E {$$ = $1;}
     ;
-E   :  E ADDSUB T {$$ = makeNode(addsub); addChild($$, $1); addSibling($1, $3);}  
+E   :  E ADDSUB T {$$ = makeNode(addsub); addChild($$, $1); addChild($$, $3);}  
     |  T {$$ = $1;}
     ;
-T   :  T DIVSTAR F {$$ = makeNode(divstar); addChild($$, $1); addSibling($1, $3);}
+T   :  T DIVSTAR F {$$ = makeNode(divstar); addChild($$, $1); addChild($$, $3);}
     |  F {$$ = $1;}
     ;
-F   :  ADDSUB F {$$ = $2; addChild($$, $2);}
-    |  '!' F {$$ = makeNode(!); addChild($$, $2);}
-    |  '(' Exp ')' { addChild($$, $2);}
-    |  NUM {addChild($$, makeNode(num));}
-    |  CHARACTER {addChild($$, makeNode(character));}
-    |  LValue {$$ = $1;} 
-    |  IDENT '(' Arguments  ')' {$$ = $3; addChild($$, makeNode(ident));}
+F   :  ADDSUB F {} // ça veut dire quoi ??? {; addChild($$, $2);}
+    |  '!' F {$$ = makeNode(not); addChild($$, $2);}
+    |  '(' Exp ')' { $$ = $2;}
+    |  NUM { $$ = makeNode(num);}
+    |  CHARACTER { $$ = makeNode(character);}
+    |  LValue { $$ = $1;} 
+    |  IDENT '(' Arguments  ')' {$$ = makeNode(ident); $$ = $3;}
     ;
 LValue:
-       IDENT {addChild($$, makeNode(ident));}
+       IDENT { $$ = makeNode(ident);}
     ;
 Arguments:
        ListExp {$$ = $1;}
     | {$$ = makeNode(arguments);}
     ;
 ListExp:
-       ListExp ',' Exp {$$ = $1; addChild($$, $3;)}
+       ListExp ',' Exp {$$ = $1; addChild($$, $3);}
     |  Exp {addChild($$,$1);}
     ;
 %%
