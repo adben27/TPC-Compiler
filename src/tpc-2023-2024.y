@@ -26,85 +26,106 @@ int yyerror(char*);
 %expect 1
 
 %%
-Prog:  DeclVars DeclFoncts { $$ = makeNode(program); addChild($$, $1);/*addChild($$, $2);*/ printTree($$); deleteTree($$);}
+Prog:  DeclVars DeclFoncts { $$ = makeLabelNode(program); addChild($$, $1); addChild($$, $2); printTree($$); deleteTree($$);}
     ;
-DeclVars:
-       DeclVars TYPE Declarateurs ';' {addChild($1, makeNode(declaration)); $$ = $1; addChild($$, makeNode(type));}
-    | {$$ = makeNode(declarations);}
+DeclVars: //OK!
+       DeclVars TYPE Declarateurs ';' { $$ = $1;
+                                        Node* tmp = makeStringNode($2, IDENTIFIER); 
+                                        addChild($1, tmp); 
+                                        addChild(tmp, $3);
+                                    }
+    | {$$ = makeLabelNode(declarations);}
     ;
-Declarateurs:
-       Declarateurs ',' IDENT {$$ = $1; addChild($$, makeNode(ident));} 
-    |  IDENT {$$ = makeNode(ident);}
+Declarateurs: //OK!
+       Declarateurs ',' IDENT {addSibling($$, makeStringNode($3, IDENTIFIER)); $$ = $1;} 
+    |  IDENT {$$ = makeStringNode($1, IDENTIFIER);}
     ;
 DeclFoncts:
-       DeclFoncts DeclFonct { $$ = $1;}
-    |  DeclFonct {$$ = makeNode(fonctions); $$ = $1;}
+       DeclFoncts DeclFonct {addChild($$,$2); $$ = $1;}
+    |  DeclFonct {$$ = makeLabelNode(fonctions); addChild($$, $1);}
     ;
 DeclFonct:
-       EnTeteFonct Corps { $$ = makeNode(fonction); addChild($$, $1); addChild($$, $2);}
+       EnTeteFonct Corps { $$ = makeLabelNode(fonction); addChild($$, $1); addChild($$, $2);}
     ;
-EnTeteFonct:
-       TYPE IDENT '(' Parametres ')' { $$ = makeNode(entete); addChild($$, makeNode(type)); addChild($$, makeNode(ident)); addChild($$, $4);}
-    |  VOID IDENT '(' Parametres ')' { addChild($$, makeNode(ident)); addChild($$, $4);}
+EnTeteFonct: //OK!
+       TYPE IDENT '(' Parametres ')' { $$ = makeLabelNode(heading); addChild($$, makeStringNode($1, IDENTIFIER)); addChild($$, makeStringNode($2, IDENTIFIER)); addChild($$, $4);}
+    |  VOID IDENT '(' Parametres ')' { $$ = makeLabelNode(heading); addChild($$, makeStringNode($1, IDENTIFIER)); addChild($$, makeStringNode($2, IDENTIFIER)); addChild($$, $4);}
     ;
-Parametres:
-       VOID {}
-    |  ListTypVar {$$ = makeNode(parametres); $$ = $1; }
+Parametres: //OK!
+       VOID { $$ = makeLabelNode(parametres); addChild($$, makeStringNode($1, IDENTIFIER)); }
+    |  ListTypVar {$$ = makeLabelNode(parametres); addChild($$, $1); }
     ;
-ListTypVar:
-       ListTypVar ',' TYPE IDENT { $$ = $1; addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
-    |  TYPE IDENT { $$ = makeNode(vars); addChild($$, makeNode(type)); addChild($$, makeNode(ident));}
-    |  TYPE IDENT '[' ']' {}
+ListTypVar: //OK!
+       ListTypVar ',' TYPE IDENT { $$ = $1; 
+                                   Node* tmp = makeStringNode($3, IDENTIFIER); 
+                                   addChild($$, tmp); 
+                                   addChild(tmp, makeStringNode($3, IDENTIFIER));
+                                }
+    |  TYPE IDENT { $$ = makeStringNode($1, IDENTIFIER); addChild($$, makeStringNode($2, IDENTIFIER));}
+    |  TYPE IDENT '[' ']' { $$ = makeLabelNode(array);
+                            Node* tmp = makeStringNode($1, IDENTIFIER);
+                            addChild($$, tmp);
+                            addChild(tmp, makeStringNode($2, IDENTIFIER));                           
+                        }
     ;
-Corps: '{' DeclVars SuiteInstr '}' { $$ = makeNode(corps); addChild($$, $2); addChild($$, $3);}
+Corps: '{' DeclVars SuiteInstr '}' { $$ = makeLabelNode(body); addChild($$, $2); /*addChild($$, $3);*/}
     ;
 SuiteInstr:
-       SuiteInstr Instr {addChild($1, makeNode(instruction)); $$ = $1;}
-    | {$$ = makeNode(instructions);}
+       SuiteInstr Instr { $$ = $1;
+                        Node* tmp = makeLabelNode(instruction);
+                        addChild($1, tmp);
+                        addChild($1, $2);
+                    }
+    | {$$ = makeLabelNode(instructions);}
     ;
 Instr:
-       LValue '=' Exp ';' {$$ = makeNode(eq); addChild($$, $1); addChild($$, $3);}
-    |  IF '(' Exp ')' Instr {$$ = makeNode(ifcond); addChild($$, $3); addChild($$, $5);}
-    |  IF '(' Exp ')' Instr ELSE Instr {}
-    |  WHILE '(' Exp ')' Instr {$$ = makeNode(whilecond); addChild($$, $3); addChild($$, $5);}
-    |  IDENT '(' Arguments  ')' ';' { $$ = makeNode(ident); $$ = $3;}
-    |  RETURN Exp ';' {$$ = makeNode(returncond); addChild($$, $2);}
-    |  RETURN ';' {$$ = makeNode(returncond);}
-    |  '{' SuiteInstr '}' { $$ = $2;}
+       LValue '=' Exp ';' {$$ = makeByteNode('='); addChild($$, $1); addChild($$, $3);}
+    |  IF '(' Exp ')' Instr {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);}
+    |  IF '(' Exp ')' Instr ELSE Instr {$$ = makeStringNode($1, IDENTIFIER);
+                                        addChild($$, $3);
+                                        addChild($$, $5);
+                                        $$ = makeStringNode($6, IDENTIFIER);
+                                        addChild($$, $7);
+                                    }
+    |  WHILE '(' Exp ')' Instr {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);}
+    |  IDENT '(' Arguments  ')' ';' { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);}
+    |  RETURN Exp ';' {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $2);}
+    |  RETURN ';' {$$ = makeStringNode($1, IDENTIFIER);}
+    |  '{' SuiteInstr '}' { $$ = $2; }
     |  ';' {}
     ;
-Exp :  Exp OR TB {$$ = makeNode(or); addChild($$, $1); addChild($$, $3);}
+Exp :  Exp OR TB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
     |  TB {$$ = $1;}
     ;
-TB  :  TB AND FB {$$ = makeNode(and); addChild($$, $1); addChild($$, $3);}
+TB  :  TB AND FB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
     |  FB {$$ = $1;}
     ;
-FB  :  FB EQ M {$$ = makeNode(eq); addChild($$, $1); addChild($$, $3);}
+FB  :  FB EQ M {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
     |  M {$$ = $1;}
     ;
-M   :  M ORDER E {$$ = makeNode(order); addChild($$, $1); addChild($$, $3);}
+M   :  M ORDER E {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
     |  E {$$ = $1;}
     ;
-E   :  E ADDSUB T {$$ = makeNode(addsub); addChild($$, $1); addChild($$, $3);}  
+E   :  E ADDSUB T {$$ = makeByteNode($2); addChild($$, $1); addChild($$, $3);}  
     |  T {$$ = $1;}
     ;
-T   :  T DIVSTAR F {$$ = makeNode(divstar); addChild($$, $1); addChild($$, $3);}
+T   :  T DIVSTAR F {$$ = makeByteNode($2); addChild($$, $1); addChild($$, $3);}
     |  F {$$ = $1;}
     ;
 F   :  ADDSUB F {} // ça veut dire quoi ??? {; addChild($$, $2);}
-    |  '!' F {$$ = makeNode(not); addChild($$, $2);}
+    |  '!' F {$$ = makeByteNode('!'); addChild($$, $2);}
     |  '(' Exp ')' { $$ = $2;}
-    |  NUM { $$ = makeNode(num);}
-    |  CHARACTER { $$ = makeNode(character);}
+    |  NUM { $$ = makeNumNode($1);}
+    |  CHARACTER { $$ = makeByteNode($1);}
     |  LValue { $$ = $1;} 
-    |  IDENT '(' Arguments  ')' {$$ = makeNode(ident); $$ = $3;}
+    |  IDENT '(' Arguments  ')' {$$ = makeStringNode($1, IDENTIFIER); $$ = $3;}
     ;
 LValue:
-       IDENT { $$ = makeNode(ident);}
+       IDENT { $$ = makeStringNode($1, IDENTIFIER);}
     ;
 Arguments:
        ListExp {$$ = $1;}
-    | {$$ = makeNode(arguments);}
+    | {$$ = makeLabelNode(arguments);}
     ;
 ListExp:
        ListExp ',' Exp {$$ = $1; addChild($$, $3);}

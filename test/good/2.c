@@ -1,6 +1,13 @@
 int i, j;
+char set;
+int k, lol;
 
-int main(int argc) {
+void fact(void) {
+	return 0;
+}
+
+int main(int argc[]) {
+	int i;
 	if(argc != 3) {
 		exit(-1);
 	}	
