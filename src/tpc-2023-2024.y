@@ -58,8 +58,15 @@ Parametres: //OK!
 ListTypVar: //OK!
        ListTypVar ',' TYPE IDENT { $$ = $1; 
                                    Node* tmp = makeStringNode($3, IDENTIFIER); 
+                                   addSibling($$, tmp); 
+                                   addChild(tmp, makeStringNode($4, IDENTIFIER));
+                                }
+    | ListTypVar ',' TYPE IDENT '[' ']' { $$ = $1; 
+                                   Node* tmp = makeLabelNode(array);
                                    addChild($$, tmp); 
-                                   addChild(tmp, makeStringNode($3, IDENTIFIER));
+                                   Node* tmp2 = makeStringNode($3, IDENTIFIER);
+                                   addChild(tmp, tmp2); 
+                                   addChild(tmp2, makeStringNode($4, IDENTIFIER));
                                 }
     |  TYPE IDENT { $$ = makeStringNode($1, IDENTIFIER); addChild($$, makeStringNode($2, IDENTIFIER));}
     |  TYPE IDENT '[' ']' { $$ = makeLabelNode(array);
@@ -68,68 +75,63 @@ ListTypVar: //OK!
                             addChild(tmp, makeStringNode($2, IDENTIFIER));                           
                         }
     ;
-Corps: '{' DeclVars SuiteInstr '}' { $$ = makeLabelNode(body); addChild($$, $2); /*addChild($$, $3);*/}
+Corps: '{' DeclVars SuiteInstr '}' { $$ = makeLabelNode(body); addChild($$, $2); addChild($$, $3);} //OK!
     ;
-SuiteInstr:
-       SuiteInstr Instr { $$ = $1;
-                        Node* tmp = makeLabelNode(instruction);
-                        addChild($1, tmp);
-                        addChild($1, $2);
-                    }
+SuiteInstr: //OK!
+       SuiteInstr Instr { $$ = $1; addChild($1, $2);}
     | {$$ = makeLabelNode(instructions);}
     ;
 Instr:
-       LValue '=' Exp ';' {$$ = makeByteNode('='); addChild($$, $1); addChild($$, $3);}
-    |  IF '(' Exp ')' Instr {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);}
-    |  IF '(' Exp ')' Instr ELSE Instr {$$ = makeStringNode($1, IDENTIFIER);
+       LValue '=' Exp ';' {$$ = makeByteNode('=', OPERATION); addChild($$, $1); addChild($$, $3);} //OK!
+    |  IF '(' Exp ')' Instr {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);} //OK!
+    |  IF '(' Exp ')' Instr ELSE Instr {$$ = makeStringNode($1, IDENTIFIER); //OK!
                                         addChild($$, $3);
                                         addChild($$, $5);
-                                        $$ = makeStringNode($6, IDENTIFIER);
                                         addChild($$, $7);
                                     }
-    |  WHILE '(' Exp ')' Instr {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);}
-    |  IDENT '(' Arguments  ')' ';' { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);}
-    |  RETURN Exp ';' {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $2);}
-    |  RETURN ';' {$$ = makeStringNode($1, IDENTIFIER);}
-    |  '{' SuiteInstr '}' { $$ = $2; }
+    |  WHILE '(' Exp ')' Instr { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);} //OK!
+    |  IDENT '(' Arguments  ')' ';' { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);} //OK! 
+    |  RETURN Exp ';' {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $2);} //OK!
+    |  RETURN ';' {$$ = makeStringNode($1, IDENTIFIER);} //OK!
+    |  '{' SuiteInstr '}' { $$ = $2; } //OK!
     |  ';' {}
     ;
-Exp :  Exp OR TB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
-    |  TB {$$ = $1;}
+Exp :  Exp OR TB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);} //OK!
+    |  TB { $$ = $1; } //OK!
     ;
-TB  :  TB AND FB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
-    |  FB {$$ = $1;}
+TB  :  TB AND FB {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);} //OK!
+    |  FB { $$ = $1; } //OK!
     ;
-FB  :  FB EQ M {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
-    |  M {$$ = $1;}
+FB  :  FB EQ M {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);} //OK!
+    |  M { $$ = $1; } //OK!
     ;
-M   :  M ORDER E {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);}
-    |  E {$$ = $1;}
+M   :  M ORDER E {$$ = makeStringNode($2, COMPARATOR); addChild($$, $1); addChild($$, $3);} //OK!
+    |  E { $$ = $1; } //OK!
     ;
-E   :  E ADDSUB T {$$ = makeByteNode($2); addChild($$, $1); addChild($$, $3);}  
-    |  T {$$ = $1;}
+E   :  E ADDSUB T {$$ = makeByteNode($2, OPERATION); addChild($$, $1); addChild($$, $3);} //OK! 
+    |  T { $$ = $1; } //OK!
     ;
-T   :  T DIVSTAR F {$$ = makeByteNode($2); addChild($$, $1); addChild($$, $3);}
-    |  F {$$ = $1;}
+T   :  T DIVSTAR F {$$ = makeByteNode($2, OPERATION); addChild($$, $1); addChild($$, $3);} //OK!
+    |  F { $$ = $1; } //OK!
     ;
-F   :  ADDSUB F {} // ça veut dire quoi ??? {; addChild($$, $2);}
-    |  '!' F {$$ = makeByteNode('!'); addChild($$, $2);}
-    |  '(' Exp ')' { $$ = $2;}
-    |  NUM { $$ = makeNumNode($1);}
-    |  CHARACTER { $$ = makeByteNode($1);}
-    |  LValue { $$ = $1;} 
-    |  IDENT '(' Arguments  ')' {$$ = makeStringNode($1, IDENTIFIER); $$ = $3;}
+F   :  ADDSUB F {$$ = makeByteNode($1, OPERATION); addChild($$, $2);} //OK!
+    |  '!' F {$$ = makeByteNode('!', OPERATION); addChild($$, $2);} //OK!
+    |  '(' Exp ')' { $$ = $2; } //OK! 
+    |  NUM { $$ = makeNumNode($1);} //OK!
+    |  CHARACTER { $$ = makeByteNode($1, CHARAC); } //OK!
+    |  LValue { $$ = $1; } //OK! 
+    |  IDENT '(' Arguments ')' {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);} //OK!
     ;
 LValue:
-       IDENT { $$ = makeStringNode($1, IDENTIFIER);}
+       IDENT { $$ = makeStringNode($1, IDENTIFIER);} //OK!
     ;
-Arguments:
-       ListExp {$$ = $1;}
-    | {$$ = makeLabelNode(arguments);}
+Arguments: //OK!
+       ListExp { $$ = $1;}
+    | { $$ = NULL; }
     ;
-ListExp:
-       ListExp ',' Exp {$$ = $1; addChild($$, $3);}
-    |  Exp {addChild($$,$1);}
+ListExp: //OK!
+       ListExp ',' Exp {$$ = $1; addSibling($$, $3);}
+    |  Exp { $$ = $1; }
     ;
 %%
 

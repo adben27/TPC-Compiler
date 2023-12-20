@@ -92,6 +92,7 @@ int|char {
 	strcpy(yylval.comp, yytext);
 	return ORDER;
 }
+
 [<>]= {
 	column += yyleng;
 	strcpy(yylval.comp, yytext);
@@ -103,8 +104,18 @@ int|char {
 	strcpy(yylval.comp, yytext);
 	return EQ;
 }
-"||" { column += yyleng; return OR; }
-"&&" { column += yyleng; return AND; }
+
+"||" { 
+	column += yyleng;
+	strcpy(yylval.comp, yytext);
+	return OR; 
+}
+
+"&&" { 
+	column += yyleng;
+	strcpy(yylval.comp, yytext);
+	return AND; 
+}
 
 -?[0-9]+ {
 	column += yyleng;
@@ -114,7 +125,7 @@ int|char {
 
 "'"[A-Za-z]"'" {
 	column += yyleng;
-	yylval.byte = yytext[0];
+	yylval.byte = yytext[1];
 	return CHARACTER;
 }
 

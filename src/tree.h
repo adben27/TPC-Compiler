@@ -21,7 +21,8 @@ typedef enum {
 
 typedef enum LexType {
   LABEL,
-  BYTE,
+  OPERATION,
+  CHARAC,
   NUMERIC,
   IDENTIFIER,
   COMPARATOR,
@@ -43,7 +44,7 @@ typedef struct Node {
 } Node;
 
 Node *makeLabelNode(label_t value);
-Node *makeByteNode(char byte);
+Node *makeByteNode(char byte, LexType type);
 Node *makeNumNode(int num);
 Node *makeStringNode(char* string, LexType type);
 void addSibling(Node *node, Node *sibling);

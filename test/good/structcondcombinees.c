@@ -1,6 +1,5 @@
 char test(int f[]) {
     int i;
-    i=0;
     while(i != (f/2) || i != (f%2)) {
         if(f == 0) {
             return 0;

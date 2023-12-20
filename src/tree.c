@@ -39,17 +39,20 @@ Node *makeLabelNode(label_t value) {
 }
 
 
-Node *makeByteNode(char byte){
-  Node *node = malloc(sizeof(Node));
-  if (!node) {
-    printf("Run out of memory\n");
-    exit(1);
+Node *makeByteNode(char byte, LexType type){
+  if(type != OPERATION || type != CHARAC) {  
+    Node *node = malloc(sizeof(Node));
+    if (!node) {
+      printf("Run out of memory\n");
+      exit(1);
+    }
+    node->type = type;
+    node->value.byte = byte;
+    node-> firstChild = node->nextSibling = NULL;
+    node->lineno=lineno;
+    return node;
   }
-  node->type = BYTE;
-  node->value.byte = byte;
-  node-> firstChild = node->nextSibling = NULL;
-  node->lineno=lineno;
-  return node;
+  exit(1);
 }
 
 Node *makeNumNode(int num) {
@@ -118,8 +121,11 @@ void printNode(Node node) {
     case LABEL:
       printf("%s", StringFromLabel[node.value.label]);
       break;
-    case BYTE:
+    case OPERATION:
       printf("%c", node.value.byte);
+      break;
+    case CHARAC:
+      printf("'%c'", node.value.byte);
       break;
     case NUMERIC:
       printf("%d", node.value.num);
