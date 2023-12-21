@@ -42,7 +42,13 @@ DeclVars: //OK!
     ;
 Declarateurs: //OK!
        Declarateurs ',' IDENT {addSibling($$, makeStringNode($3, IDENTIFIER)); $$ = $1;} 
+    |  Declarateurs ',' IDENT '[' NUM ']' { Node* tmp = makeLabelNode(array); 
+                                            addSibling($$, tmp); 
+                                            addChild(tmp, makeStringNode($3, IDENTIFIER));
+                                            addChild(tmp, makeNumNode($5)); $$ = $1;
+                                        } 
     |  IDENT {$$ = makeStringNode($1, IDENTIFIER);}
+    |  IDENT '[' NUM ']' {$$ = makeLabelNode(array); addChild($$, makeStringNode($1, IDENTIFIER)); addChild($$, makeNumNode($3));}
     ;
 DeclFoncts:
        DeclFoncts DeclFonct {addChild($$,$2); $$ = $1;}
@@ -94,7 +100,7 @@ Instr:
                                         addChild($$, $7);
                                     }
     |  WHILE '(' Exp ')' Instr { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3); addChild($$, $5);} //OK!
-    |  IDENT '(' Arguments  ')' ';' { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);} //OK! 
+    |  IDENT '(' Arguments ')' ';' { $$ = makeStringNode($1, IDENTIFIER); addChild($$, $3);} //OK! 
     |  RETURN Exp ';' {$$ = makeStringNode($1, IDENTIFIER); addChild($$, $2);} //OK!
     |  RETURN ';' {$$ = makeStringNode($1, IDENTIFIER);} //OK!
     |  '{' SuiteInstr '}' { $$ = $2; } //OK!
@@ -128,6 +134,7 @@ F   :  ADDSUB F {$$ = makeByteNode($1, OPERATION); addChild($$, $2);} //OK!
     ;
 LValue:
        IDENT { $$ = makeStringNode($1, IDENTIFIER);} //OK!
+    |  IDENT '[' Exp ']' {$$ = makeLabelNode(array); addChild($$, makeStringNode($1, IDENTIFIER)); addChild($$, $3);} //OK!
     ;
 Arguments: //OK!
        ListExp { $$ = $1;}
@@ -149,8 +156,8 @@ int main(int argc, char* argv[]) {
 
     while(1) {
         static struct option long_options[] = {
-            {"tree", 0, 0, 't'},
-            {"help", 0, 0, 'h'},
+            {"tree", no_argument, 0, 't'},
+            {"help", no_argument, 0, 'h'},
             {0,0,0,0}
         };
 
@@ -166,6 +173,7 @@ int main(int argc, char* argv[]) {
                 usage();
                 break;
             case '?':
+                // getopt imprime un message pour indiquer que l'option est inconnue
                 break;
             default:
                 exit(2);
@@ -181,4 +189,5 @@ void usage() {
     fprintf(stderr, "Options :\n");
     fprintf(stderr, "-t, --tree Afficher l'arbre abstrait du programme\n");
     fprintf(stderr, "-h, --help Afficher l'aide\n");
+    exit(0);
 }

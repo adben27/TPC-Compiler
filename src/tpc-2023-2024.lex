@@ -1,6 +1,5 @@
 %{
 /* Analyseur syntaxique TPC*/
-/* MANQUE LE CAS OU LE COMMENTAIRE NE SE FINIT PAS A LA FIN DU FICHIER! */
 #include "tree.h"
 #include "tpc-2023-2024.tab.h"
 #include <string.h>
