@@ -147,13 +147,17 @@ int yyerror(char *msg) {
 int main(int argc, char* argv[]) {
 	int opt;
 
-    static struct option long_options[] = {
-        {"tree", 0, 0, 't'},
-        {"help", 0, 0, 'h'},
-        {0,0,0,0}
-    };
+    while(1) {
+        static struct option long_options[] = {
+            {"tree", 0, 0, 't'},
+            {"help", 0, 0, 'h'},
+            {0,0,0,0}
+        };
 
-    while((opt= getopt_long(argc, argv, "th", long_options, NULL) != -1)) {
+        opt = getopt_long(argc, argv, "th", long_options, NULL);
+
+        if(opt == -1) break;
+
         switch(opt) {
             case 't':
                 tree = 1;
@@ -161,9 +165,9 @@ int main(int argc, char* argv[]) {
             case 'h':
                 usage();
                 break;
+            case '?':
+                break;
             default:
-                fprintf(stderr, "Option inconnue : %c\n\n", optopt);
-                usage();
                 exit(2);
         }
     }
