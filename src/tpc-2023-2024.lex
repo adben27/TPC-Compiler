@@ -123,7 +123,7 @@ int|char {
 	return NUM;
 }
 
-"'"[^']"'"|'\n'|'\t'|"\'" {
+'[^']'|'\\n'|'\\t'|"\'" {
 	column += yyleng;
 	yylval.byte = yytext[1];
 	return CHARACTER;
