@@ -3,10 +3,14 @@
 #include "tree.h"
 #include <stdio.h>
 #include <string.h>
+#include <getopt.h>
+#include <stdlib.h>
 extern int lineno;
 extern int column;
 int yylex();
 int yyerror(char*);
+void usage();
+int tree = 0;
 %}
 
 %union {
@@ -26,7 +30,7 @@ int yyerror(char*);
 %expect 1
 
 %%
-Prog:  DeclVars DeclFoncts { $$ = makeLabelNode(program); addChild($$, $1); addChild($$, $2); printTree($$); deleteTree($$);}
+Prog:  DeclVars DeclFoncts { $$ = makeLabelNode(program); addChild($$, $1); addChild($$, $2); if(tree) { printTree($$); } deleteTree($$);}
     ;
 DeclVars: //OK!
        DeclVars TYPE Declarateurs ';' { $$ = $1;
@@ -140,6 +144,37 @@ int yyerror(char *msg) {
 	return 0;
 }
 
-int main() {
-	return yyparse();
+int main(int argc, char* argv[]) {
+	int opt;
+
+    static struct option long_options[] = {
+        {"tree", 0, 0, 't'},
+        {"help", 0, 0, 'h'},
+        {0,0,0,0}
+    };
+
+    while((opt= getopt_long(argc, argv, "th", long_options, NULL) != -1)) {
+        switch(opt) {
+            case 't':
+                tree = 1;
+                break;
+            case 'h':
+                usage();
+                break;
+            default:
+                fprintf(stderr, "Option inconnue : %c\n\n", optopt);
+                usage();
+                exit(2);
+        }
+    }
+    
+    return yyparse();
+}
+
+void usage() {
+    fprintf(stderr, "Analyseur syntaxique du langage TPC\n");
+    fprintf(stderr, "Usage : bin/tpcas [OPTIONS] < <fichier>\n");
+    fprintf(stderr, "Options :\n");
+    fprintf(stderr, "-t, --tree Afficher l'arbre abstrait du programme\n");
+    fprintf(stderr, "-h, --help Afficher l'aide\n");
 }

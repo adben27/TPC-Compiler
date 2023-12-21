@@ -13,7 +13,7 @@ for file in test/good/*; do
 	echo $file >> log
 	bin/tpcas < $file 2>> log
 	echo "" >> log
-	cat $file >> log
+	cat -n $file >> log
 	echo -e "\n" >> log
 done
 
@@ -25,7 +25,7 @@ for file in test/syn-err/*; do
 	echo "" >> log
 	bin/tpcas < $file 2>> log
 	echo "" >> log
-	cat $file >> log
+	cat -n $file >> log
 	echo -e "\n" >> log
 done
 
