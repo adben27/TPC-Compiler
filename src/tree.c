@@ -29,7 +29,7 @@ Node *makeLabelNode(label_t value) {
   Node *node = malloc(sizeof(Node));
   if (!node) {
     printf("Run out of memory\n");
-    exit(1);
+    exit(3);
   }
   node->type = LABEL;
   node->value.label = value;
@@ -44,7 +44,7 @@ Node *makeByteNode(char byte, LexType type){
     Node *node = malloc(sizeof(Node));
     if (!node) {
       printf("Run out of memory\n");
-      exit(1);
+      exit(3);
     }
     node->type = type;
     node->value.byte = byte;
@@ -59,7 +59,7 @@ Node *makeNumNode(int num) {
   Node *node = malloc(sizeof(Node));
   if (!node) {
     printf("Run out of memory\n");
-    exit(1);
+    exit(3);
   }
   node->type = NUMERIC;
   node->value.num = num;
@@ -73,7 +73,7 @@ Node *makeStringNode(char* string, LexType type) {
     Node *node = malloc(sizeof(Node));
     if (!node) {
       printf("Run out of memory\n");
-      exit(1);
+      exit(3);
     }
     if(type == IDENTIFIER) {
       node->type = type;
@@ -86,7 +86,7 @@ Node *makeStringNode(char* string, LexType type) {
     node->lineno=lineno;
     return node;
   }
-  exit(1);
+  exit(3);
 }
 
 void addSibling(Node *node, Node *sibling) {

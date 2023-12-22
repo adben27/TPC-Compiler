@@ -171,10 +171,9 @@ int main(int argc, char* argv[]) {
                 break;
             case 'h':
                 usage();
-                break;
             case '?':
                 // getopt imprime un message pour indiquer que l'option est inconnue
-                break;
+                exit(2);
             default:
                 exit(2);
         }
