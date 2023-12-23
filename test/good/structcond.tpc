@@ -19,11 +19,11 @@ int main(void) {
 		i = i - 2;
 	}
 
-	/*if(k == 0) {
+	if(k == 0) {
 		
-	} else if {
+	} else if(k && 1) {
 		
-	}*/
+	}
 
 	return 0;
 }

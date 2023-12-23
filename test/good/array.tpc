@@ -6,7 +6,7 @@ int main(void) {
     
     int factor;
 
-    initializeArrays(numbers, characters);
+    initializeArrays(numbers[5], characters[8]);
 
 
     numbers[0] = 42;

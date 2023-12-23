@@ -11,7 +11,8 @@ fi
 
 for file in test/good/*; do
 	echo $file >> log
-	bin/tpcas < $file 2>> log
+	echo "" >> log
+	bin/tpcas -t < $file >> log 2>&1
 	echo "" >> log
 	cat -n $file >> log
 	echo -e "\n" >> log
