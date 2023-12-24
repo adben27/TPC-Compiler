@@ -1,0 +1,5 @@
+int tableau[12];
+
+void maFonction(int tab[12]){
+    return 1;
+}
