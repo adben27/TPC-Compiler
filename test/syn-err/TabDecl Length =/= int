@@ -1,0 +1,9 @@
+char alphabet[26];
+char lettre[abc];
+
+int test_lettres(char alphabet[], char lettre[]){
+    if(lettre[1] == alphabet[10]{
+        return 0;
+    })
+    return 1;
+}
