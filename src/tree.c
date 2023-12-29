@@ -125,7 +125,17 @@ void printNode(Node node) {
       printf("%c", node.value.byte);
       break;
     case CHARAC:
-      printf("'%c'", node.value.byte);
+      switch(node.value.byte) {
+        case '\n':
+          printf("\\n");
+          break;
+        case '\t':
+          printf("\\t");
+          break;
+        default:
+          printf("'%c'", node.value.byte);
+          break;
+      }
       break;
     case NUMERIC:
       printf("%d", node.value.num);

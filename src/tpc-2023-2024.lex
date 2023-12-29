@@ -122,9 +122,25 @@ int|char {
 	return NUM;
 }
 
-'[^']'|'\\n'|'\\t'|"\'" {
+'[^'\\]' {
 	column += yyleng;
 	yylval.byte = yytext[1];
+	return CHARACTER;
+}
+
+'\\[n|t||'|\\]' {
+	column += yyleng;
+	switch(yytext[2]) {
+		case 'n':
+			yylval.byte = '\n';
+			break;
+		case 't':
+			yylval.byte = '\t';
+			break;
+		default:
+			yylval.byte = yytext[2];
+			break;
+	}
 	return CHARACTER;
 }
 
@@ -136,4 +152,8 @@ int|char {
 
 \n { column = 1; lineno++; }
 {escape}+ column += yyleng;
+. {
+	fprintf(stderr, "syntax error at line %d and column %d\n", lineno, column);
+	exit(1);
+}
 %%

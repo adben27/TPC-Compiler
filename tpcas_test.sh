@@ -30,4 +30,4 @@ for file in test/syn-err/*; do
 	echo -e "\n" >> log
 done
 
-gedit -s log
+gedit -s log &
